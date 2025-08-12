@@ -20,5 +20,11 @@ export * from './database';
 // Migration system
 export * from './migration';
 
+// Performance optimization
+export * from './performance';
+
+// Testing and validation
+export * from './testing';
+
 // Re-export default config for convenience
 export { default as config } from './config';
