@@ -3,8 +3,9 @@
  * Handles environment-specific settings and file paths
  */
 
-import path from 'path';
-import os from 'os';
+import * as path from 'path';
+import * as os from 'os';
+import type { DatabaseConfig } from './database/types';
 
 // Environment configuration
 export const ENV = {
@@ -61,6 +62,29 @@ export const PROCESSING = {
   DEBUG_LIMIT: 20,
 } as const;
 
+// Database configuration
+export const DATABASE: DatabaseConfig = {
+  type: (process.env.DATABASE_TYPE as 'sqlite' | 'postgresql') || 
+        (ENV.IS_PRODUCTION ? 'postgresql' : 'sqlite'),
+  
+  // SQLite configuration
+  filename: process.env.DATABASE_URL || 
+           path.join(PATHS.DATA_DIR, 'mtg-investment.db'),
+  
+  // PostgreSQL configuration
+  connectionString: process.env.DATABASE_URL,
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432'),
+  database: process.env.DB_NAME || 'mtg_investment',
+  username: process.env.DB_USER || 'mtg_user',
+  password: process.env.DB_PASSWORD,
+  ssl: process.env.DB_SSL === 'true' || ENV.IS_PRODUCTION,
+  
+  // Connection pooling
+  poolMin: parseInt(process.env.DB_POOL_MIN || '2'),
+  poolMax: parseInt(process.env.DB_POOL_MAX || '10'),
+} as const;
+
 // Validation helpers
 export const VALIDATION = {
   MAX_FILE_SIZE: 1024 * 1024 * 1024 * 2, // 2GB
@@ -95,6 +119,12 @@ export function getConfigSummary() {
     isProduction: ENV.IS_PRODUCTION,
     mtgjsonFile: FILES.MTGJSON_ALLPRICES,
     priceHistoryFile: FILES.PRICE_HISTORY,
+    database: {
+      type: DATABASE.type,
+      filename: DATABASE.filename,
+      host: DATABASE.host,
+      database: DATABASE.database,
+    },
   };
 }
 
@@ -104,6 +134,7 @@ export default {
   FILES,
   API,
   PROCESSING,
+  DATABASE,
   VALIDATION,
   ensureDirectories,
   getConfigSummary,
