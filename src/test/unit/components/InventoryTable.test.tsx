@@ -1,0 +1,1 @@
+// InventoryTable test implementation

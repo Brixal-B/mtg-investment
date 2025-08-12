@@ -1,0 +1,1 @@
+// card management E2E test implementation

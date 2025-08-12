@@ -1,31 +1,31 @@
-# 🧪 Testing Guide - MTG Investment Next
+# 🧪 Testing Guide
 
-## Overview
+This document provides comprehensive guidance for testing the MTG Investment application.
 
-This project uses a comprehensive testing strategy with multiple layers to ensure code quality and reliability.
+## 📋 Testing Overview
 
-## Testing Stack
+Our testing strategy includes:
+- **Unit Tests**: Component and utility testing
+- **Integration Tests**: API and database testing  
+- **E2E Tests**: Full user journey testing
+- **Performance Tests**: Load and performance testing
+- **Security Tests**: Authentication and validation testing
 
-- **Unit Testing**: Jest + React Testing Library
-- **Integration Testing**: Jest + Supertest
-- **E2E Testing**: Playwright
-- **Database Testing**: Custom test utilities with SQLite
-- **API Testing**: MSW (Mock Service Worker)
-- **CI/CD**: GitHub Actions
+## 🛠️ Testing Tools
 
-## Test Structure
+### Primary Testing Stack
+- **Jest**: Test runner and assertion library
+- **React Testing Library**: Component testing
+- **Playwright**: End-to-end testing
+- **MSW (Mock Service Worker)**: API mocking
+- **Supertest**: HTTP assertion testing
 
-```
-src/test/
-├── unit/           # Unit tests for individual components/functions
-├── integration/    # Integration tests for API routes and database
-├── e2e/           # End-to-end tests with Playwright
-├── mocks/         # Mock service worker setup and handlers
-├── utils/         # Testing utilities and helpers
-└── setup.ts       # Global test setup
-```
+### Testing Utilities
+- **@testing-library/user-event**: User interaction simulation
+- **@testing-library/jest-dom**: DOM testing utilities
+- **jest-environment-jsdom**: Browser-like testing environment
 
-## Running Tests
+## 🚀 Running Tests
 
 ### All Tests
 ```bash
@@ -42,7 +42,7 @@ npm run test:unit
 npm run test:integration
 ```
 
-### E2E Tests Only
+### E2E Tests
 ```bash
 npm run test:e2e
 ```
@@ -52,175 +52,243 @@ npm run test:e2e
 npm run test:coverage
 ```
 
-### Watch Mode (Development)
+### Watch Mode
 ```bash
 npm run test:watch
 ```
 
-## Writing Tests
+### CI Mode
+```bash
+npm run test:ci
+```
 
-### Unit Tests
+## 📁 Test Structure
 
-Unit tests focus on individual components or functions in isolation:
+```
+src/test/
+├── unit/                    # Unit tests
+│   ├── components/          # Component tests
+│   ├── lib/                 # Library function tests
+│   ├── utils/               # Utility function tests
+│   └── services/            # Service layer tests
+├── integration/             # Integration tests
+│   ├── api/                 # API endpoint tests
+│   └── database/            # Database operation tests
+├── e2e/                     # End-to-end tests
+├── performance/             # Performance tests
+├── security/                # Security tests
+├── fixtures/                # Test data
+├── mocks/                   # Mock implementations
+└── utils/                   # Test utilities
+```
+
+## 🧩 Writing Tests
+
+### Component Testing Example
 
 ```typescript
-import { render, screen } from '@testing-library/react';
-import { MyComponent } from '@/components';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MyComponent } from '@/components/MyComponent';
 
 describe('MyComponent', () => {
   it('renders correctly', () => {
-    render(<MyComponent />);
+    render(<MyComponent prop="value" />);
     expect(screen.getByText('Expected Text')).toBeInTheDocument();
   });
+
+  it('handles user interaction', () => {
+    const mockHandler = jest.fn();
+    render(<MyComponent onAction={mockHandler} />);
+    
+    fireEvent.click(screen.getByText('Click Me'));
+    expect(mockHandler).toHaveBeenCalled();
+  });
 });
 ```
 
-### Integration Tests
-
-Integration tests verify API routes and database operations:
+### API Testing Example
 
 ```typescript
-import { testApiRoute } from '@/test/utils/api';
-import { TestDatabase } from '@/test/utils/database';
-import handler from '@/app/api/my-route/route';
+import request from 'supertest';
+import { createMockApp } from '@/test/utils/api-test-utils';
 
-describe('/api/my-route', () => {
-  beforeEach(async () => {
-    await TestDatabase.setupTestDatabase();
-  });
-
-  it('handles requests correctly', async () => {
-    const response = await testApiRoute(handler, {
-      method: 'GET'
-    });
-    expect(response.status).toBe(200);
+describe('/api/cards', () => {
+  it('returns cards list', async () => {
+    const app = createMockApp();
+    
+    const response = await request(app)
+      .get('/api/cards')
+      .expect(200);
+      
+    expect(response.body).toHaveProperty('cards');
+    expect(Array.isArray(response.body.cards)).toBe(true);
   });
 });
 ```
 
-### E2E Tests
-
-End-to-end tests verify complete user workflows:
+### E2E Testing Example
 
 ```typescript
 import { test, expect } from '@playwright/test';
 
-test('user can complete workflow', async ({ page }) => {
-  await page.goto('/');
-  await page.click('[data-testid="action-button"]');
-  await expect(page.locator('[data-testid="result"]')).toBeVisible();
+test('user can login and view cards', async ({ page }) => {
+  await page.goto('/login');
+  
+  await page.fill('[data-testid="email"]', 'user@example.com');
+  await page.fill('[data-testid="password"]', 'password');
+  await page.click('[data-testid="login-button"]');
+  
+  await expect(page).toHaveURL('/dashboard');
+  await expect(page.getByText('Welcome')).toBeVisible();
 });
 ```
 
-## Database Testing
+## 🎯 Testing Best Practices
 
-Use the TestDatabase utility for database operations:
+### 1. Test Behavior, Not Implementation
+- Focus on what the component does, not how it does it
+- Test user interactions and expected outcomes
+- Avoid testing internal state or implementation details
 
+### 2. Use Descriptive Test Names
 ```typescript
-import { TestDatabase } from '@/test/utils/database';
+// Good
+it('shows error message when login fails with invalid credentials')
 
-beforeEach(async () => {
-  await TestDatabase.setupTestDatabase();
-  await TestDatabase.seedTestData();
-});
+// Bad  
+it('handles error')
+```
 
-afterEach(async () => {
-  await TestDatabase.cleanupTestDatabase();
+### 3. Follow the Testing Trophy
+- **Unit Tests**: Fast, isolated, high confidence for utilities
+- **Integration Tests**: Medium speed, medium confidence for API/DB
+- **E2E Tests**: Slow, high confidence for critical user flows
+
+### 4. Mock External Dependencies
+- Use MSW for API mocking
+- Mock external services and APIs
+- Keep tests isolated and deterministic
+
+### 5. Test Edge Cases
+- Empty states
+- Error conditions
+- Loading states
+- Invalid inputs
+
+## 📊 Coverage Goals
+
+| Test Type | Coverage Target |
+|-----------|----------------|
+| Unit Tests | 80%+ |
+| Integration Tests | 70%+ |
+| E2E Tests | Critical paths |
+| Overall Coverage | 75%+ |
+
+## 🔧 Test Configuration
+
+### Jest Configuration
+Located in `jest.config.js` with:
+- JSDOM environment for component testing
+- SWC for fast TypeScript compilation
+- Coverage thresholds
+- Module name mapping
+
+### Playwright Configuration
+Located in `playwright.config.ts` with:
+- Multiple browser testing
+- Parallel execution
+- Screenshot on failure
+- Video recording
+
+## 🚨 Common Testing Patterns
+
+### Testing Hooks
+```typescript
+import { renderHook, act } from '@testing-library/react';
+import { useMyHook } from '@/hooks/useMyHook';
+
+test('hook updates state correctly', () => {
+  const { result } = renderHook(() => useMyHook());
+  
+  act(() => {
+    result.current.updateValue('new value');
+  });
+  
+  expect(result.current.value).toBe('new value');
 });
 ```
 
-## Mocking
-
-### API Mocking with MSW
-
-Mock external APIs using Mock Service Worker:
-
+### Testing Context Providers
 ```typescript
-import { server } from '@/test/mocks/server';
-import { http, HttpResponse } from 'msw';
+import { render } from '@/test/utils/render-utils';
+import { MyComponent } from '@/components/MyComponent';
 
-beforeAll(() => server.listen());
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
-
-// Override specific handlers for individual tests
-server.use(
-  http.get('/api/custom', () => {
-    return HttpResponse.json({ custom: 'response' });
-  })
-);
+test('component uses context correctly', () => {
+  render(<MyComponent />, {
+    providerProps: { user: mockUser }
+  });
+  
+  expect(screen.getByText(mockUser.name)).toBeInTheDocument();
+});
 ```
 
-### Component Mocking
-
-Mock complex components or external dependencies:
-
+### Testing Error Boundaries
 ```typescript
-jest.mock('@/components/ComplexComponent', () => {
-  return function MockComplexComponent(props: any) {
-    return <div data-testid="mock-complex">{props.children}</div>;
+test('error boundary catches and displays error', () => {
+  const ThrowError = () => {
+    throw new Error('Test error');
   };
+  
+  render(
+    <ErrorBoundary>
+      <ThrowError />
+    </ErrorBoundary>
+  );
+  
+  expect(screen.getByText('Something went wrong')).toBeInTheDocument();
 });
 ```
 
-## Coverage Requirements
+## 🔍 Debugging Tests
 
-- **Minimum Coverage**: 70% for all metrics
-- **Branches**: 70%
-- **Functions**: 70%
-- **Lines**: 70%
-- **Statements**: 70%
-
-## Best Practices
-
-1. **Test Behavior, Not Implementation**: Focus on what the component does, not how it does it
-2. **Use Data Test IDs**: Add `data-testid` attributes for stable selectors
-3. **Mock External Dependencies**: Isolate units under test
-4. **Keep Tests Simple**: One assertion per test when possible
-5. **Use Descriptive Names**: Test names should clearly describe the scenario
-6. **Setup and Teardown**: Clean up after each test to avoid side effects
-
-## CI/CD Integration
-
-Tests run automatically on:
-- Push to main/develop branches
-- Pull requests
-- GitHub Actions workflow
-
-The pipeline includes:
-- Linting and type checking
-- Unit and integration tests
-- E2E tests
-- Coverage reporting
-- Security auditing
-
-## Debugging Tests
+### Running Single Test
+```bash
+npm test -- --testNamePattern="specific test name"
+```
 
 ### Debug Mode
 ```bash
 npm run test:debug
 ```
 
-### VS Code Integration
-1. Install Jest Runner extension
-2. Use built-in test debugging features
-3. Set breakpoints in test files
-
-### Playwright Debug
+### Verbose Output
 ```bash
-npx playwright test --debug
+npm test -- --verbose
 ```
 
-## Performance Testing
+### Coverage for Specific Files
+```bash
+npm test -- --collectCoverageFrom="src/components/MyComponent.tsx"
+```
 
-While not included in this initial setup, consider adding:
-- Load testing with Artillery or k6
-- Performance regression testing
-- Bundle size monitoring
+## 📚 Additional Resources
 
-## Resources
-
-- [Jest Documentation](https://jestjs.io/)
+- [Jest Documentation](https://jestjs.io/docs/getting-started)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Playwright Documentation](https://playwright.dev/)
 - [MSW Documentation](https://mswjs.io/)
+
+## 🎯 Testing Checklist
+
+- [ ] All new features have unit tests
+- [ ] Critical user flows have E2E tests
+- [ ] API endpoints have integration tests
+- [ ] Error conditions are tested
+- [ ] Loading states are tested
+- [ ] Edge cases are covered
+- [ ] Tests are deterministic and reliable
+- [ ] Coverage thresholds are met
+
+---
+
+**Happy Testing!** 🧪✨

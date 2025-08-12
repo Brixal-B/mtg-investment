@@ -1,0 +1,1 @@
+// cache-manager test implementation
