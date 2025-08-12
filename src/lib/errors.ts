@@ -3,9 +3,9 @@
  */
 
 import { NextResponse } from 'next/server';
-import { AppError } from '@/types';
+// import { AppError } from '@/types'; // Commented out - not currently used
 
-// Define ApiError interface locally since it wasn't exported
+// Define ApiError interface locally 
 interface ApiError extends Error {
   status?: number;
   code?: string;

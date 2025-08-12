@@ -17,7 +17,7 @@ interface Migration {
  * Load migration files
  */
 async function loadMigrations(): Promise<Migration[]> {
-  const migrationsDir = path.join(__dirname, 'migrations');
+  const migrationsDir = path.join(process.cwd(), 'src', 'lib', 'database', 'migrations');
   const dbType = db.getType();
   const suffix = dbType === 'sqlite' ? '_sqlite.sql' : '_postgresql.sql';
   
