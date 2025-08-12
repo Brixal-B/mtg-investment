@@ -130,29 +130,15 @@ class CardModel {
     let whereConditions: string[] = [];
     let params: any[] = [];
 
-    // Build WHERE conditions
+    // Build WHERE conditions (simplified - only card properties)
     if (filter.search) {
-      whereConditions.push('c.name LIKE ?');
+      whereConditions.push('name LIKE ?');
       params.push(`%${filter.search}%`);
     }
 
     if (filter.setFilter) {
-      whereConditions.push('c.set_code = ?');
+      whereConditions.push('set_code = ?');
       params.push(filter.setFilter);
-    }
-
-    if (filter.minPrice !== undefined) {
-      whereConditions.push('cwp.latest_price >= ?');
-      params.push(filter.minPrice);
-    }
-
-    if (filter.maxPrice !== undefined) {
-      whereConditions.push('cwp.latest_price <= ?');
-      params.push(filter.maxPrice);
-    }
-
-    if (filter.onlyWithoutPrices) {
-      whereConditions.push('cwp.latest_price IS NULL');
     }
 
     const whereClause = whereConditions.length > 0 
@@ -162,7 +148,7 @@ class CardModel {
     // Count total results
     const countSql = `
       SELECT COUNT(*) as total
-      FROM cards_with_prices cwp
+      FROM cards
       ${whereClause}
     `;
     
@@ -172,23 +158,23 @@ class CardModel {
     // Get paginated results
     const offset = (page - 1) * pageSize;
     const sql = `
-      SELECT * FROM cards_with_prices cwp
+      SELECT * FROM cards
       ${whereClause}
-      ORDER BY c.name
+      ORDER BY name
       LIMIT ? OFFSET ?
     `;
 
     const result = await db.query(sql, [...params, pageSize, offset]);
-    const cards = result.map(row => this.mapViewToCardWithPrice(row));
-
-    // Calculate total value
-    const totalValue = cards.reduce((sum, card) => sum + (card.currentPrice || 0), 0);
+    const cards = result.map(row => ({
+      ...this.mapRowToMTGCard(row),
+      currentPrice: undefined // No price data in simplified search
+    }) as CardWithPrice);
 
     return {
       cards,
       totalCount: totalCount,
       filteredCount: cards.length,
-      totalValue
+      totalValue: 0
     };
   }
 
@@ -245,6 +231,26 @@ class CardModel {
       cmc: row.cmc || undefined,
       oracleText: row.oracle_text || undefined,
       imageUrl: row.image_url || undefined
+    };
+  }
+
+  /**
+   * Map row with price data to CardWithPrice interface  
+   */
+  private mapRowToCardWithPrice(row: any): CardWithPrice {
+    return {
+      uuid: row.uuid,
+      name: row.name,
+      setCode: row.set_code,
+      setName: row.set_name,
+      rarity: row.rarity || undefined,
+      typeLine: row.type_line || undefined,
+      manaCost: row.mana_cost || undefined,
+      cmc: row.cmc || undefined,
+      oracleText: row.oracle_text || undefined,
+      imageUrl: row.image_url || undefined,
+      currentPrice: row.latest_price || undefined,
+      // Note: priceHistory and priceChange would be populated by separate queries if needed
     };
   }
 

@@ -92,15 +92,17 @@ async function applyMigration(migration: Migration): Promise<void> {
   console.log(`Applying migration: ${migration.filename}`);
   
   try {
-    // Split SQL into individual statements
+    // Split SQL into individual statements and filter out empty ones
     const statements = migration.sql
       .split(';')
       .map(stmt => stmt.trim())
-      .filter(stmt => stmt.length > 0);
+      .filter(stmt => stmt.length > 0 && !stmt.startsWith('--'));
 
-    // Execute each statement
+    // Execute each statement individually
     for (const statement of statements) {
-      await db.query(statement);
+      if (statement.trim()) {
+        await db.query(statement + ';');
+      }
     }
 
     // Record migration as applied

@@ -69,19 +69,3 @@ CREATE INDEX IF NOT EXISTS idx_card_sets_release_date ON card_sets(release_date)
 
 CREATE INDEX IF NOT EXISTS idx_import_logs_type_status ON import_logs(import_type, status);
 CREATE INDEX IF NOT EXISTS idx_import_logs_started_at ON import_logs(started_at);
-
--- Update trigger for cards table
-CREATE TRIGGER IF NOT EXISTS update_cards_timestamp 
-    AFTER UPDATE ON cards
-    FOR EACH ROW
-BEGIN
-    UPDATE cards SET updated_at = CURRENT_TIMESTAMP WHERE uuid = NEW.uuid;
-END;
-
--- Update trigger for card_sets table
-CREATE TRIGGER IF NOT EXISTS update_card_sets_timestamp 
-    AFTER UPDATE ON card_sets
-    FOR EACH ROW
-BEGIN
-    UPDATE card_sets SET updated_at = CURRENT_TIMESTAMP WHERE code = NEW.code;
-END;
