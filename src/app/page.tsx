@@ -110,7 +110,7 @@ export default function Home() {
           sizeEl.textContent = `Snapshots: ${data.length}`;
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error refreshing file status:", error);
     }
   }
@@ -189,7 +189,7 @@ export default function Home() {
           reject(new Error("Download timeout"));
         }, 10 * 60 * 1000);
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`Download failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -267,7 +267,7 @@ export default function Home() {
           reject(new Error("Import timeout"));
         }, 30 * 60 * 1000);
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`Import failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -296,7 +296,7 @@ export default function Home() {
       window.URL.revokeObjectURL(url);
       
       setAdminStatus("✅ Price history downloaded successfully!");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`Download failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -322,7 +322,7 @@ export default function Home() {
       window.URL.revokeObjectURL(url);
       
       setAdminStatus("✅ Import log downloaded successfully!");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`Download failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -334,7 +334,7 @@ export default function Home() {
       setAdminLoading(true);
       const result = await triggerApiAction("/api/test-json");
       setAdminStatus(`✅ JSON validity test: ${JSON.stringify(result, null, 2)}`);
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`❌ JSON test failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -346,7 +346,7 @@ export default function Home() {
       setAdminLoading(true);
       await triggerApiAction("/api/admin/clear-logs");
       setAdminStatus("✅ Logs cleared successfully!");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`❌ Clear logs failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -358,7 +358,7 @@ export default function Home() {
       setAdminLoading(true);
       await triggerApiAction("/api/admin/clear-import-lock");
       setAdminStatus("✅ Import lock cleared successfully!");
-    } catch (error: any) {
+    } catch (error: unknown) {
       setAdminStatus(`❌ Clear lock failed: ${error.message}`);
     } finally {
       setAdminLoading(false);
@@ -418,7 +418,7 @@ export default function Home() {
           setLoading(false);
         }
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("File processing error:", error);
       setLoading(false);
     }

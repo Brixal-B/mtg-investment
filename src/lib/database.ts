@@ -75,7 +75,7 @@ class DatabasePool {
     }
   }
 
-  async run(sql: string, params: any[] = []): Promise<{ changes: number; lastID: number }> {
+  async run(sql: string, params: unknown[] = []): Promise<{ changes: number; lastID: number }> {
     if (!this.db) await this.initialize();
     
     return new Promise((resolve, reject) => {
@@ -86,7 +86,7 @@ class DatabasePool {
     });
   }
 
-  async get<T = any>(sql: string, params: any[] = []): Promise<T | undefined> {
+  async get<T = any>(sql: string, params: unknown[] = []): Promise<T | undefined> {
     if (!this.db) await this.initialize();
     
     return new Promise((resolve, reject) => {
@@ -97,7 +97,7 @@ class DatabasePool {
     });
   }
 
-  async all<T = any>(sql: string, params: any[] = []): Promise<T[]> {
+  async all<T = any>(sql: string, params: unknown[] = []): Promise<T[]> {
     if (!this.db) await this.initialize();
     
     return new Promise((resolve, reject) => {
@@ -144,7 +144,7 @@ export const CardOperations = {
     `, [`%${query}%`, `%${query}%`, limit]);
   },
 
-  async insertCard(cardData: any) {
+  async insertCard(cardData: unknown) {
     const sql = `
       INSERT OR REPLACE INTO cards 
       (uuid, name, set_code, set_name, collector_number, rarity, mana_cost, cmc, 
@@ -204,7 +204,7 @@ export const PriceOperations = {
     `, [cardUuid]);
   },
 
-  async insertPriceRecord(priceData: any) {
+  async insertPriceRecord(priceData: unknown) {
     const sql = `
       INSERT OR REPLACE INTO price_history 
       (card_uuid, date, price_usd, price_usd_foil, price_eur, price_tix, source)
@@ -222,7 +222,7 @@ export const PriceOperations = {
     ]);
   },
 
-  async bulkInsertPrices(priceRecords: any[]) {
+  async bulkInsertPrices(priceRecords: unknown[]) {
     // Use transaction for better performance
     await db.run('BEGIN TRANSACTION');
     
@@ -261,7 +261,7 @@ export const CollectionOperations = {
     `, [userId]);
   },
 
-  async addToCollection(cardUuid: string, quantity = 1, options: any = {}) {
+  async addToCollection(cardUuid: string, quantity = 1, options: unknown = {}) {
     const sql = `
       INSERT OR REPLACE INTO collections 
       (user_id, card_uuid, quantity, condition, foil, purchase_price, purchase_date, notes, updated_at)
@@ -349,7 +349,7 @@ export const SnapshotOperations = {
 
 // Import logging operations
 export const ImportLogOperations = {
-  async createImportLog(operationType: string, metadata: any = {}) {
+  async createImportLog(operationType: string, metadata: unknown = {}) {
     const sql = `
       INSERT INTO import_logs 
       (operation_type, status, metadata, started_at)
