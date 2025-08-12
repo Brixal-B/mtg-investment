@@ -19,8 +19,8 @@ export const PATHS = {
   // Use system temp directory with fallback
   TEMP_DIR: process.env.TEMP_DIR || process.env.TMPDIR || os.tmpdir(),
   
-  // Data directory - can be overridden for production
-  DATA_DIR: process.env.DATA_DIR || (ENV.IS_PRODUCTION ? '/data' : path.join(os.tmpdir(), 'mtg-data')),
+  // Data directory - use workspace data directory for development
+  DATA_DIR: process.env.DATA_DIR || (ENV.IS_PRODUCTION ? '/data' : path.join(process.cwd(), 'data')),
   
   // Workspace root for development
   WORKSPACE_ROOT: process.cwd(),

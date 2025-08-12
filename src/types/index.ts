@@ -16,18 +16,25 @@ export type {
   CardSearchResult,
 } from './mtg';
 
-// API and admin types
+// API Types
 export type {
+  AppError,
+  ApiError,
   ApiResponse,
   AdminStatus,
   DownloadProgress,
   ImportProgress,
   MTGJSONFileStatus,
-  AppError,
   AppConfig,
   DebugConfig,
   AdminAction,
   FileProcessingStatus,
+  DatabaseCard,
+  PriceRecord,
+  CollectionItem,
+  DatabasePriceSnapshot,
+  ImportLog,
+  DatabaseInfo
 } from './api';
 
 // Component and UI types

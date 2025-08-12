@@ -12,12 +12,9 @@ const { parser } = require('stream-json');
 const { pick } = require('stream-json/filters/Pick');
 const { streamObject } = require('stream-json/streamers/StreamObject');
 
-// Import centralized configuration
-const { FILES, API } = require('./lib/node-config');
-
 const MTGJSON_URL = 'https://mtgjson.com/api/v5/AllPrices.json';
-const LOCAL_FILE = process.argv[2] || FILES.MTGJSON_ALLPRICES_LOCAL;
-const API_URL = process.argv[3] || (API.BASE_URL + API.ENDPOINTS.PRICE_HISTORY);
+const LOCAL_FILE = process.argv[2] || path.join(__dirname, 'AllPrices.json');
+const API_URL = process.argv[3] || 'http://localhost:3000/api/price-history';
 
 // Check for debug mode
 const DEBUG_MODE = process.argv.includes('--debug') || process.argv.includes('debug') || process.env.DEBUG_IMPORT === 'true';
@@ -41,7 +38,6 @@ const DEBUG_CONFIG = {
   SHOW_PRICE_ANALYSIS: true,
   SHOW_SET_STATISTICS: true,
   SHOW_MONTHLY_TRENDS: true,    // New: Show price trends across months
-  USE_FALLBACK_DATES: false,    // Whether to use fallback dates if target dates not found
   VERBOSE_LOGGING: true,          // Show detailed card-by-card processing
 };
 
@@ -94,7 +90,7 @@ async function main() {
   console.log(`🎯 Collecting price data for last 6 months: ${TARGET_DATES.join(', ')}`);
   
   const cards = [];
-  const progressPath = FILES.IMPORT_PROGRESS_DATA;
+  const progressPath = '/tmp/AllPrices.import.progress.json';
   let processed = 0;
   let validCards = 0;
   const startTime = Date.now();

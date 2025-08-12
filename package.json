@@ -12,14 +12,23 @@
     "cleanup:agent": "node workflow.js complete",
     "cleanup:final": "node workflow.js final",
     "workflow:complete": "node workflow.js complete",
-    "workflow:final": "node workflow.js final"
+    "workflow:final": "node workflow.js final",
+    "db:migrate": "node migrate-to-database.js",
+    "db:migrate:dry": "node migrate-to-database.js --dry-run --verbose",
+    "db:init": "node migrate-to-database.js",
+    "db:info": "node -e \"const db = require('./src/lib/database'); db.default.Maintenance.getDatabaseInfo().then(console.log)\"",
+    "db:vacuum": "node -e \"const db = require('./src/lib/database'); db.default.Maintenance.vacuum().then(() => console.log('Database vacuum completed'))\""
   },
   "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "@types/sqlite3": "^5.1.0",
     "next": "15.4.6",
     "node-fetch": "^2.7.0",
     "papaparse": "^5.5.3",
+    "prisma": "^6.13.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "sqlite3": "^5.1.7",
     "stream-json": "^1.9.1",
     "tailwindcss": "^3.4.17"
   },
