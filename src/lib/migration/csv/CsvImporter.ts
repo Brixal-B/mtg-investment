@@ -70,7 +70,7 @@ export class CsvImporter extends MigrationBase {
       
       if (invalidRows.length > 0) {
         warnings.push(`${invalidRows.length} rows failed validation and will be skipped`);
-        invalidRows.forEach(({ error }) => warnings.push(error));
+        invalidRows.forEach(({ error }: { error: string }) => warnings.push(error));
       }
 
       if (!this.options.dryRun) {
@@ -138,14 +138,14 @@ export class CsvImporter extends MigrationBase {
         throw new Error(`Source file is empty: ${this.sourceFile}`);
       }
 
-      if (stats.size > this.csvOptions.maxFileSize || 100 * 1024 * 1024) { // 100MB default limit
+      if (stats.size > (this.csvOptions.maxFileSize || 100 * 1024 * 1024)) { // 100MB default limit
         throw new Error(`Source file too large: ${this.sourceFile}`);
       }
 
       // Check file extension
       const ext = this.sourceFile.toLowerCase().split('.').pop();
       if (ext !== 'csv') {
-        warnings.push(`File extension is not .csv, proceeding anyway`);
+        console.warn(`File extension is not .csv, proceeding anyway`);
       }
 
     } catch (error) {

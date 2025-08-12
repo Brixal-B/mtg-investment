@@ -145,21 +145,21 @@ export class MigrationManager {
       const logs = await ImportLogModel.getRecent(limit);
       
       return logs.map(log => ({
-        id: log.id.toString(),
-        type: log.import_type,
+        id: log.id?.toString() || 'unknown',
+        type: log.importType,
         status: log.status as any,
-        startTime: log.started_at,
-        endTime: log.completed_at || undefined,
+        startTime: log.startedAt,
+        endTime: log.completedAt || undefined,
         progress: {
           phase: 'completed',
-          processed: log.records_processed || 0,
-          total: log.records_processed || 0,
-          failed: log.records_failed || 0,
+          processed: log.recordsProcessed || 0,
+          total: log.recordsProcessed || 0,
+          failed: log.recordsFailed || 0,
           percentage: 100,
-          startTime: log.started_at,
-          errors: log.error_message ? [log.error_message] : []
+          startTime: log.startedAt,
+          errors: log.errorMessage ? [log.errorMessage] : []
         },
-        metadata: log.metadata ? JSON.parse(log.metadata) : undefined
+        metadata: log.metadata || undefined
       }));
     } catch (error) {
       console.error('Failed to get migration history:', error);

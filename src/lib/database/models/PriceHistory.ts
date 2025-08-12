@@ -335,6 +335,84 @@ class PriceHistoryModel {
     
     return result[0]?.changes || 0;
   }
+
+  /**
+   * Get price history for a card with all sources/variants
+   */
+  async getCardPriceHistory(cardUuid: string, days?: number): Promise<Array<{
+    price_date: Date;
+    price: number;
+    source: string;
+    variant: string;
+  }>> {
+    let sql = `
+      SELECT price_date, price, source, variant 
+      FROM price_history 
+      WHERE card_uuid = ?
+    `;
+    
+    const params = [cardUuid];
+
+    if (days) {
+      sql += ` AND price_date >= DATE('now', '-${days} days')`;
+    }
+
+    sql += ' ORDER BY price_date DESC';
+
+    const result = await db.query(sql, params);
+    
+    return result.map(row => ({
+      price_date: new Date(row.price_date),
+      price: row.price,
+      source: row.source,
+      variant: row.variant
+    }));
+  }
+
+  /**
+   * Create multiple price history entries in batch
+   */
+  async createBatch(entries: Array<{
+    card_uuid: string;
+    price_date: Date;
+    price: number;
+    source: string;
+    variant: string;
+  }>): Promise<void> {
+    if (entries.length === 0) return;
+
+    const sql = `
+      INSERT INTO price_history (card_uuid, price_date, price, source, variant)
+      VALUES (?, ?, ?, ?, ?)
+      ON CONFLICT(card_uuid, price_date, source, variant) 
+      DO UPDATE SET price = excluded.price
+    `;
+
+    for (const entry of entries) {
+      try {
+        await db.query(sql, [
+          entry.card_uuid,
+          entry.price_date.toISOString().split('T')[0],
+          entry.price,
+          entry.source,
+          entry.variant
+        ]);
+      } catch (error) {
+        // Skip duplicates, continue with other entries
+        if (!(error instanceof Error) || !error.message.includes('UNIQUE constraint')) {
+          throw error;
+        }
+      }
+    }
+  }
+
+  /**
+   * Count total price history records
+   */
+  async count(): Promise<number> {
+    const result = await db.query('SELECT COUNT(*) as count FROM price_history');
+    return result[0]?.count || 0;
+  }
 }
 
 export default new PriceHistoryModel();

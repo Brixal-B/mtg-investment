@@ -68,6 +68,7 @@ export interface CsvImportOptions extends MigrationOptions {
   headers?: string[];
   skipHeaders?: boolean;
   encoding?: BufferEncoding;
+  maxFileSize?: number;
 }
 
 export interface CsvRow {

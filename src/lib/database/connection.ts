@@ -3,7 +3,7 @@
  * Supports SQLite for development and PostgreSQL for production
  */
 
-import * as Database from 'better-sqlite3';
+import Database from 'better-sqlite3';
 import { Pool, Client } from 'pg';
 import { DATABASE } from '../config';
 import type { DatabaseConfig } from './types';
@@ -39,7 +39,7 @@ class DatabaseConnection {
     }
 
     try {
-      this.sqliteDb = new (Database as any)(this.config.filename);
+      this.sqliteDb = new Database(this.config.filename);
       this.sqliteDb.pragma('journal_mode = WAL');
       this.sqliteDb.pragma('foreign_keys = ON');
       this.sqliteDb.pragma('synchronous = NORMAL');

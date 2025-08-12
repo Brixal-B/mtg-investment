@@ -1,71 +1,244 @@
 import { NextResponse } from 'next/server';
 import { 
-  FILES,
-  fileExists,
   createSuccessResponse,
   createErrorResponse,
-  withErrorHandling,
-  initializeFileSystem
+  withErrorHandling
 } from '@/lib';
-import fs from 'fs';
+import { CardModel, CardSetModel, PriceHistoryModel } from '@/lib/database/models';
+import db from '@/lib/database/connection';
+import type { MTGCard, CardSearchResult } from '@/types/mtg';
 
-// Initialize file system on module load
-initializeFileSystem().catch(console.error);
-
-export const GET = withErrorHandling(async (): Promise<NextResponse> => {
-  // Check for the public file first, then the temp file
-  const filePath = fileExists(FILES.MTGJSON_ALLPRICES_LOCAL) 
-    ? FILES.MTGJSON_ALLPRICES_LOCAL 
-    : FILES.MTGJSON_ALLPRICES;
-  
-  if (!fileExists(filePath)) {
-    return createErrorResponse(
-      new Error('AllPrices.json not found'),
-      'AllPrices.json not found. Please download MTGJSON data first.',
-      404
-    );
+// Initialize database connection
+let dbInitialized = false;
+async function ensureDbConnection() {
+  if (!dbInitialized) {
+    try {
+      await db.connect();
+      dbInitialized = true;
+    } catch (error) {
+      console.error('Failed to connect to database:', error);
+      throw error;
+    }
   }
-  
+}
+
+export const GET = withErrorHandling(async (request: Request): Promise<NextResponse> => {
+  await ensureDbConnection();
+
+  const { searchParams } = new URL(request.url);
+  const action = searchParams.get('action') || 'meta';
+  const limit = parseInt(searchParams.get('limit') || '1000');
+  const setFilter = searchParams.get('set');
+  const search = searchParams.get('search');
+  const page = parseInt(searchParams.get('page') || '1');
+
   try {
-    // Read a sample of the file to extract meta information
-    const fileHandle = fs.openSync(filePath, 'r');
-    const sampleSize = 10 * 1024 * 1024; // 10MB sample
-    const buffer = Buffer.alloc(sampleSize);
-    const bytesRead = fs.readSync(fileHandle, buffer, 0, sampleSize, 0);
-    fs.closeSync(fileHandle);
-    
-    const partialContent = buffer.toString('utf8', 0, bytesRead);
-    
-    // Find the data section
-    const dataStart = partialContent.indexOf('"data": {');
-    if (dataStart === -1) {
-      throw new Error('Invalid JSON structure - no data field found');
+    if (action === 'meta') {
+      // Return metadata about the database
+      const meta = await getDatabaseMetadata();
+      return createSuccessResponse({
+        meta,
+        message: "Database-powered MTG data - use other action parameters for specific data",
+        availableActions: ['meta', 'cards', 'sets', 'stats'],
+        suggestion: "Use action=cards to get card data, action=sets for set information"
+      });
+    } else if (action === 'cards') {
+      // Return card data with optional filtering
+      const result = await getCards(search, setFilter, page, limit);
+      return createSuccessResponse(result);
+    } else if (action === 'sets') {
+      // Return set information
+      const sets = await getSets();
+      return createSuccessResponse({ sets });
+    } else if (action === 'stats') {
+      // Return database statistics
+      const stats = await getDatabaseStats();
+      return createSuccessResponse(stats);
+    } else {
+      throw new Error(`Unsupported action: ${action}`);
     }
-    
-    // Extract meta information
-    const metaMatch = partialContent.match(/"meta":\s*({[^}]+})/);
-    if (!metaMatch) {
-      throw new Error('Invalid JSON structure - no meta field found');
-    }
-    
-    const meta = JSON.parse(metaMatch[1]);
-    const stats = fs.statSync(filePath);
-    
-    return createSuccessResponse({
-      meta,
-      fileSize: stats.size,
-      data: {
-        message: "Data loading simplified due to file size constraints",
-        totalSize: `${(stats.size / (1024 * 1024 * 1024)).toFixed(2)} GB`,
-        suggestion: "Use the admin import tools to process this data server-side first"
-      }
-    });
   } catch (error) {
-    console.error('Error loading MTGJSON data:', error);
+    console.error('MTGJSON Data API error:', error);
     return createErrorResponse(
       error,
-      'Failed to load MTGJSON data',
+      'Failed to retrieve MTG data',
       500
     );
   }
 });
+
+/**
+ * Get database metadata in MTGJSON-compatible format
+ */
+async function getDatabaseMetadata() {
+  const [totalCards, totalSets, totalPrices] = await Promise.all([
+    CardModel.count(),
+    CardSetModel.count(),
+    PriceHistoryModel.count()
+  ]);
+
+  // Get latest price date
+  const latestPriceResult = await db.query(
+    'SELECT MAX(price_date) as latest_date FROM price_history LIMIT 1'
+  );
+  const latestPriceDate = latestPriceResult[0]?.latest_date;
+
+  return {
+    date: new Date().toISOString().split('T')[0],
+    version: "5.2.0", // Mimic MTGJSON version format
+    totalCards,
+    totalSets,
+    totalPriceRecords: totalPrices,
+    latestPriceUpdate: latestPriceDate,
+    source: "MTG Investment Database",
+    disclaimer: "Data sourced from MTGJSON and enhanced with additional price tracking"
+  };
+}
+
+/**
+ * Get cards with filtering and pagination
+ */
+async function getCards(
+  search?: string | null,
+  setFilter?: string | null,
+  page: number = 1,
+  limit: number = 1000
+): Promise<{
+  cards: MTGCard[];
+  totalCount: number;
+  currentPage: number;
+  totalPages: number;
+  hasMore: boolean;
+}> {
+  const filters = {
+    search: search || undefined,
+    setFilter: setFilter || undefined
+  };
+
+  const searchResult = await CardModel.search(filters, page, limit);
+  const totalPages = Math.ceil(searchResult.totalCount / limit);
+
+  return {
+    cards: searchResult.cards.map(card => ({
+      uuid: card.uuid,
+      name: card.name,
+      setCode: card.setCode,
+      setName: card.setName,
+      rarity: card.rarity,
+      typeLine: card.typeLine,
+      manaCost: card.manaCost,
+      cmc: card.cmc,
+      oracleText: card.oracleText,
+      imageUrl: card.imageUrl
+    })),
+    totalCount: searchResult.totalCount,
+    currentPage: page,
+    totalPages,
+    hasMore: page < totalPages
+  };
+}
+
+/**
+ * Get all card sets
+ */
+async function getSets(): Promise<Array<{
+  code: string;
+  name: string;
+  type?: string;
+  releaseDate?: string;
+  cardCount: number;
+}>> {
+  const sets = await CardSetModel.getAll();
+  
+  // Get card counts for each set
+  const setsWithCounts = await Promise.all(
+    sets.map(async (set) => {
+      const cardCount = await db.query(
+        'SELECT COUNT(*) as count FROM cards WHERE set_code = ?',
+        [set.code]
+      );
+      
+      return {
+        code: set.code,
+        name: set.name,
+        type: set.type,
+        releaseDate: set.releaseDate?.toISOString().split('T')[0],
+        cardCount: cardCount[0]?.count || 0
+      };
+    })
+  );
+
+  return setsWithCounts.sort((a, b) => b.cardCount - a.cardCount);
+}
+
+/**
+ * Get comprehensive database statistics
+ */
+async function getDatabaseStats(): Promise<{
+  overview: any;
+  cardsBySet: any[];
+  pricesBySource: any[];
+  recentActivity: any;
+}> {
+  // Overview statistics
+  const [totalCards, totalSets, totalPrices] = await Promise.all([
+    CardModel.count(),
+    CardSetModel.count(),
+    PriceHistoryModel.count()
+  ]);
+
+  const cardsWithPricesResult = await db.query(`
+    SELECT COUNT(DISTINCT card_uuid) as count 
+    FROM price_history
+  `);
+  const cardsWithPrices = cardsWithPricesResult[0]?.count || 0;
+
+  // Cards by set (top 10)
+  const cardsBySet = await db.query(`
+    SELECT set_code, set_name, COUNT(*) as card_count
+    FROM cards 
+    GROUP BY set_code, set_name 
+    ORDER BY card_count DESC 
+    LIMIT 10
+  `);
+
+  // Prices by source
+  const pricesBySource = await db.query(`
+    SELECT source, COUNT(*) as count
+    FROM price_history 
+    GROUP BY source 
+    ORDER BY count DESC
+  `);
+
+  // Recent activity (last 30 days)
+  const recentPricesResult = await db.query(`
+    SELECT COUNT(*) as count
+    FROM price_history 
+    WHERE price_date >= date('now', '-30 days')
+  `);
+  const recentPrices = recentPricesResult[0]?.count || 0;
+
+  return {
+    overview: {
+      totalCards,
+      totalSets,
+      totalPriceRecords: totalPrices,
+      cardsWithPrices,
+      cardsWithoutPrices: totalCards - cardsWithPrices,
+      coveragePercentage: totalCards > 0 ? Math.round((cardsWithPrices / totalCards) * 100) : 0
+    },
+    cardsBySet: cardsBySet.map((row: any) => ({
+      setCode: row.set_code,
+      setName: row.set_name,
+      cardCount: row.card_count
+    })),
+    pricesBySource: pricesBySource.map((row: any) => ({
+      source: row.source,
+      count: row.count
+    })),
+    recentActivity: {
+      recentPriceUpdates: recentPrices,
+      lastUpdated: new Date().toISOString()
+    }
+  };
+}

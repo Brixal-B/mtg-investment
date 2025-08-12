@@ -19,6 +19,26 @@ interface ImportLog {
 
 class ImportLogModel {
   /**
+   * Create a new import log entry
+   */
+  async create(log: {
+    import_type: string;
+    status: string;
+    metadata?: string;
+  }): Promise<void> {
+    const sql = `
+      INSERT INTO import_logs (import_type, status, metadata)
+      VALUES (?, ?, ?)
+    `;
+
+    await db.query(sql, [
+      log.import_type,
+      log.status,
+      log.metadata || null
+    ]);
+  }
+
+  /**
    * Start a new import process
    */
   async startImport(importType: string, metadata?: Record<string, any>): Promise<number> {
@@ -205,6 +225,64 @@ class ImportLogModel {
     );
 
     return result[0]?.changes || 0;
+  }
+
+  /**
+   * Update log by import type (for cases where we don't have the exact ID)
+   */
+  async updateByImportType(
+    importType: string, 
+    updates: Partial<{
+      status: string;
+      records_processed: number;
+      records_failed: number;
+      error_message: string;
+      metadata: string;
+    }>
+  ): Promise<void> {
+    const setParts: string[] = [];
+    const values: any[] = [];
+
+    if (updates.status !== undefined) {
+      setParts.push('status = ?');
+      values.push(updates.status);
+    }
+
+    if (updates.records_processed !== undefined) {
+      setParts.push('records_processed = ?');
+      values.push(updates.records_processed);
+    }
+
+    if (updates.records_failed !== undefined) {
+      setParts.push('records_failed = ?');
+      values.push(updates.records_failed);
+    }
+
+    if (updates.error_message !== undefined) {
+      setParts.push('error_message = ?');
+      values.push(updates.error_message);
+    }
+
+    if (updates.metadata !== undefined) {
+      setParts.push('metadata = ?');
+      values.push(updates.metadata);
+    }
+
+    setParts.push('completed_at = CURRENT_TIMESTAMP');
+
+    if (setParts.length === 0) return;
+
+    const sql = `
+      UPDATE import_logs 
+      SET ${setParts.join(', ')}
+      WHERE import_type = ? 
+      AND status = 'in_progress'
+      ORDER BY started_at DESC 
+      LIMIT 1
+    `;
+
+    values.push(importType);
+    await db.query(sql, values);
   }
 
   /**
