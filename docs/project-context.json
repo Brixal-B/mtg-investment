@@ -1,0 +1,40 @@
+{
+  "project": {
+    "name": "MTG Investment Next",
+    "type": "Next.js Application",
+    "purpose": "Magic: The Gathering card investment tracking"
+  },
+  "development": {
+    "currentPhase": "Feature development and optimization",
+    "recentWork": [
+      "Cleanup agent implementation",
+      "Admin tools enhancement",
+      "API route optimization"
+    ],
+    "knownAgents": [
+      {
+        "name": "CleanupAgent",
+        "file": "/lib/cleanup-agent.js",
+        "purpose": "Automated codebase maintenance",
+        "features": [
+          "Remove test/backup files",
+          "Clean temporary artifacts",
+          "Remove dev-only files",
+          "Generate cleanup reports"
+        ]
+      }
+    ]
+  },
+  "architecture": {
+    "frontend": "Next.js + React + TypeScript",
+    "styling": "Tailwind CSS",
+    "database": "SQLite",
+    "dataSource": "MTGJSON",
+    "deployment": "TBD"
+  },
+  "chatContext": {
+    "lastSession": "",
+    "keyTopics": [],
+    "pendingTasks": []
+  }
+}
