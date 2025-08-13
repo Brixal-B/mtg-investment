@@ -1,3 +1,70 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  /* Text clamp utility for mobile */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  /* Touch-friendly hover states - only apply hover on devices that support it */
+  @media (hover: hover) {
+    .hover-scale:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  /* Safe area padding for mobile devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Custom scrollbar for mobile */
+  .scrollbar-mobile::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-mobile::-webkit-scrollbar-track {
+    background: #374151;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-mobile::-webkit-scrollbar-thumb {
+    background: #6b7280;
+    border-radius: 4px;
+  }
+  
+  .scrollbar-mobile::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+}
+
+/* Mobile specific overrides */
+@media (max-width: 640px) {
+  /* Ensure inputs are properly sized on iOS */
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  select,
+  textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Focus styles for accessibility */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
