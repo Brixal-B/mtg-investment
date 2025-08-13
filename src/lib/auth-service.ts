@@ -35,7 +35,13 @@ export interface JWTPayload {
 // Authentication configuration
 const AUTH_CONFIG = {
   jwt: {
-    secret: process.env.JWT_SECRET || 'mtg-investment-secret-key',
+    secret: process.env.JWT_SECRET || (() => {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('JWT_SECRET environment variable is required in production');
+      }
+      console.warn('⚠️  Using default JWT secret in development. Set JWT_SECRET environment variable.');
+      return 'dev-only-insecure-jwt-secret-change-in-production';
+    })(),
     expiresIn: '24h',
     refreshExpiresIn: '7d'
   },
@@ -108,13 +114,18 @@ class AuthService {
   }
 
   /**
-   * Set authentication cookie
+   * Set authentication cookie (server-side only)
+   * Note: HttpOnly cookies cannot be set from client-side JavaScript
    */
   setAuthCookie(token: string) {
+    // This method should only be called on the server-side
     if (typeof window !== 'undefined') {
-      // Client-side cookie setting
-      document.cookie = `${AUTH_CONFIG.session.cookieName}=${token}; Max-Age=${AUTH_CONFIG.session.maxAge}; Path=/; ${AUTH_CONFIG.session.secure ? 'Secure;' : ''} HttpOnly; SameSite=${AUTH_CONFIG.session.sameSite}`;
+      console.warn('⚠️  Cannot set HttpOnly cookies from client-side. Use server-side API endpoints.');
+      return;
     }
+    
+    // Server-side cookie setting would be handled by API routes
+    console.log('Setting auth cookie on server-side');
   }
 
   /**

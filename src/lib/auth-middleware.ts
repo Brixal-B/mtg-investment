@@ -78,31 +78,65 @@ export function withModeratorAuth(
 }
 
 /**
- * Rate limiting middleware
+ * Rate limiting middleware with enhanced security
  */
-const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
+const rateLimitMap = new Map<string, { count: number; resetTime: number; blocked?: boolean }>();
 
 export function withRateLimit(
   handler: (request: NextRequest, ...args: any[]) => Promise<NextResponse>,
-  options: { maxRequests: number; windowMs: number } = { maxRequests: 100, windowMs: 60000 }
+  options: { maxRequests: number; windowMs: number; blockDuration?: number } = { 
+    maxRequests: 100, 
+    windowMs: 60000,
+    blockDuration: 300000 // 5 minutes
+  }
 ) {
   return async (request: NextRequest, ...args: any[]) => {
-    const ip = request.headers.get('x-forwarded-for') || 
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
                request.headers.get('x-real-ip') || 
+               request.headers.get('cf-connecting-ip') ||
                'unknown';
     const now = Date.now();
     
     const rateLimitData = rateLimitMap.get(ip);
     
     if (rateLimitData) {
+      // Check if IP is currently blocked
+      if (rateLimitData.blocked && now < rateLimitData.resetTime) {
+        return NextResponse.json(
+          { 
+            error: 'IP temporarily blocked due to rate limit violations',
+            blockedUntil: new Date(rateLimitData.resetTime).toISOString()
+          },
+          { 
+            status: 429,
+            headers: {
+              'Retry-After': Math.ceil((rateLimitData.resetTime - now) / 1000).toString(),
+              'X-RateLimit-Limit': options.maxRequests.toString(),
+              'X-RateLimit-Remaining': '0',
+              'X-RateLimit-Reset': new Date(rateLimitData.resetTime).toISOString()
+            }
+          }
+        );
+      }
+      
       if (now < rateLimitData.resetTime) {
         if (rateLimitData.count >= options.maxRequests) {
+          // Block IP for extended period after repeated violations
+          rateLimitData.blocked = true;
+          rateLimitData.resetTime = now + (options.blockDuration || 300000);
+          
           return NextResponse.json(
-            { error: 'Rate limit exceeded' },
+            { 
+              error: 'Rate limit exceeded. IP blocked temporarily.',
+              blockedUntil: new Date(rateLimitData.resetTime).toISOString()
+            },
             { 
               status: 429,
               headers: {
-                'Retry-After': Math.ceil((rateLimitData.resetTime - now) / 1000).toString()
+                'Retry-After': Math.ceil((rateLimitData.resetTime - now) / 1000).toString(),
+                'X-RateLimit-Limit': options.maxRequests.toString(),
+                'X-RateLimit-Remaining': '0',
+                'X-RateLimit-Reset': new Date(rateLimitData.resetTime).toISOString()
               }
             }
           );
@@ -112,16 +146,36 @@ export function withRateLimit(
         // Reset window
         rateLimitData.count = 1;
         rateLimitData.resetTime = now + options.windowMs;
+        rateLimitData.blocked = false;
       }
     } else {
       // First request from this IP
       rateLimitMap.set(ip, {
         count: 1,
-        resetTime: now + options.windowMs
+        resetTime: now + options.windowMs,
+        blocked: false
       });
     }
 
-    return handler(request, ...args);
+    // Clean up old entries periodically
+    if (Math.random() < 0.01) { // 1% chance to clean up
+      const cutoff = now - (options.windowMs * 2);
+      for (const [key, value] of rateLimitMap.entries()) {
+        if (value.resetTime < cutoff) {
+          rateLimitMap.delete(key);
+        }
+      }
+    }
+
+    const currentData = rateLimitMap.get(ip)!;
+    const response = await handler(request, ...args);
+    
+    // Add rate limit headers to response
+    response.headers.set('X-RateLimit-Limit', options.maxRequests.toString());
+    response.headers.set('X-RateLimit-Remaining', Math.max(0, options.maxRequests - currentData.count).toString());
+    response.headers.set('X-RateLimit-Reset', new Date(currentData.resetTime).toISOString());
+
+    return response;
   };
 }
 

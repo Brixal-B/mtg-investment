@@ -12,7 +12,7 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
-    ignores: ["lib/*.js", "*.js", "!src/**/*.js"],
+    ignores: ["lib/**/*.js", "scripts/**/*.js", "*.js", "!src/**/*.js"],
     rules: {
       "@typescript-eslint/no-require-imports": "warn",
       "@typescript-eslint/no-unused-vars": "warn",
@@ -23,6 +23,13 @@ const eslintConfig = [
       "react/no-unescaped-entities": "warn",
       "@next/next/no-img-element": "warn",
       "@next/next/no-html-link-for-pages": "warn"
+    }
+  },
+  {
+    files: ["lib/**/*.js", "scripts/**/*.js"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+      "@typescript-eslint/no-unused-vars": "warn"
     }
   }
 ];

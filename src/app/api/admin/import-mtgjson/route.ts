@@ -60,7 +60,7 @@ export const POST = withErrorHandling(async (req: NextRequest): Promise<NextResp
   console.log(`Starting import command: ${command}`);
   
   return new Promise((resolve) => {
-    const child = exec(command, (_, stdout, stderr) => {
+    const child = exec(command, (error, stdout, stderr) => {
       // Always remove the lock file when process finishes
       deleteFile(FILES.IMPORT_PROGRESS_LOCK);
       
@@ -107,7 +107,7 @@ export const GET = withErrorHandling(async (req: NextRequest): Promise<NextRespo
     
     return createSuccessResponse({ 
       inProgress, 
-      ...progressData 
+      ...(progressData || {})
     });
   }
   

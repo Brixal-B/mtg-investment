@@ -145,7 +145,42 @@ export const CardOperations = {
   },
 
   async insertCard(cardData: unknown) {
-    const card = cardData as any; // Type assertion for unknown data
+    // Validate input data before processing
+    if (!cardData || typeof cardData !== 'object') {
+      throw new Error('Invalid card data: must be an object');
+    }
+    
+    const card = cardData as any;
+    
+    // Validate required fields
+    if (!card.uuid || typeof card.uuid !== 'string') {
+      throw new Error('Invalid card data: uuid is required and must be a string');
+    }
+    if (!card.name || typeof card.name !== 'string') {
+      throw new Error('Invalid card data: name is required and must be a string');
+    }
+    
+    // Sanitize string inputs
+    const sanitizedCard = {
+      uuid: String(card.uuid).slice(0, 255), // Limit length
+      name: String(card.name).slice(0, 255),
+      set_code: card.set_code ? String(card.set_code).slice(0, 10) : null,
+      set_name: card.set_name ? String(card.set_name).slice(0, 255) : null,
+      collector_number: card.collector_number ? String(card.collector_number).slice(0, 50) : null,
+      rarity: card.rarity ? String(card.rarity).slice(0, 50) : null,
+      mana_cost: card.mana_cost ? String(card.mana_cost).slice(0, 100) : null,
+      cmc: card.cmc && typeof card.cmc === 'number' ? card.cmc : null,
+      type_line: card.type_line ? String(card.type_line).slice(0, 255) : null,
+      oracle_text: card.oracle_text ? String(card.oracle_text).slice(0, 2000) : null,
+      power: card.power ? String(card.power).slice(0, 10) : null,
+      toughness: card.toughness ? String(card.toughness).slice(0, 10) : null,
+      colors: card.colors ? JSON.stringify(card.colors).slice(0, 255) : null,
+      color_identity: card.color_identity ? JSON.stringify(card.color_identity).slice(0, 255) : null,
+      legalities: card.legalities ? JSON.stringify(card.legalities).slice(0, 1000) : null,
+      image_uris: card.image_uris ? JSON.stringify(card.image_uris).slice(0, 1000) : null,
+      scryfall_id: card.scryfall_id ? String(card.scryfall_id).slice(0, 255) : null
+    };
+    
     const sql = `
       INSERT OR REPLACE INTO cards 
       (uuid, name, set_code, set_name, collector_number, rarity, mana_cost, cmc, 
@@ -155,23 +190,23 @@ export const CardOperations = {
     `;
     
     return db.run(sql, [
-      card.uuid,
-      card.name,
-      card.set_code,
-      card.set_name,
-      card.collector_number,
-      card.rarity,
-      card.mana_cost,
-      card.cmc,
-      card.type_line,
-      card.oracle_text,
-      card.power,
-      card.toughness,
-      JSON.stringify(card.colors),
-      JSON.stringify(card.color_identity),
-      JSON.stringify(card.legalities),
-      JSON.stringify(card.image_uris),
-      card.scryfall_id
+      sanitizedCard.uuid,
+      sanitizedCard.name,
+      sanitizedCard.set_code,
+      sanitizedCard.set_name,
+      sanitizedCard.collector_number,
+      sanitizedCard.rarity,
+      sanitizedCard.mana_cost,
+      sanitizedCard.cmc,
+      sanitizedCard.type_line,
+      sanitizedCard.oracle_text,
+      sanitizedCard.power,
+      sanitizedCard.toughness,
+      sanitizedCard.colors,
+      sanitizedCard.color_identity,
+      sanitizedCard.legalities,
+      sanitizedCard.image_uris,
+      sanitizedCard.scryfall_id
     ]);
   },
 
@@ -206,7 +241,32 @@ export const PriceOperations = {
   },
 
   async insertPriceRecord(priceData: unknown) {
-    const price = priceData as any; // Type assertion for unknown data
+    // Validate input data
+    if (!priceData || typeof priceData !== 'object') {
+      throw new Error('Invalid price data: must be an object');
+    }
+    
+    const price = priceData as any;
+    
+    // Validate required fields
+    if (!price.card_uuid || typeof price.card_uuid !== 'string') {
+      throw new Error('Invalid price data: card_uuid is required and must be a string');
+    }
+    if (!price.date || typeof price.date !== 'string') {
+      throw new Error('Invalid price data: date is required and must be a string');
+    }
+    
+    // Sanitize and validate price data
+    const sanitizedPrice = {
+      card_uuid: String(price.card_uuid).slice(0, 255),
+      date: String(price.date).slice(0, 20), // ISO date format
+      price_usd: price.price_usd && typeof price.price_usd === 'number' ? price.price_usd : null,
+      price_usd_foil: price.price_usd_foil && typeof price.price_usd_foil === 'number' ? price.price_usd_foil : null,
+      price_eur: price.price_eur && typeof price.price_eur === 'number' ? price.price_eur : null,
+      price_tix: price.price_tix && typeof price.price_tix === 'number' ? price.price_tix : null,
+      source: price.source ? String(price.source).slice(0, 50) : 'unknown'
+    };
+    
     const sql = `
       INSERT OR REPLACE INTO price_history 
       (card_uuid, date, price_usd, price_usd_foil, price_eur, price_tix, source)
@@ -214,13 +274,13 @@ export const PriceOperations = {
     `;
     
     return db.run(sql, [
-      price.card_uuid,
-      price.date,
-      price.price_usd,
-      price.price_usd_foil,
-      price.price_eur,
-      price.price_tix,
-      price.source
+      sanitizedPrice.card_uuid,
+      sanitizedPrice.date,
+      sanitizedPrice.price_usd,
+      sanitizedPrice.price_usd_foil,
+      sanitizedPrice.price_eur,
+      sanitizedPrice.price_tix,
+      sanitizedPrice.source
     ]);
   },
 

@@ -21,5 +21,14 @@ export * from './errors';
 // Validation utilities  
 export * from './validation';
 
+// Security utilities
+export * from './auth-service';
+export * from './auth-middleware';
+export * from './security-monitor';
+export * from './security-validation';
+
+// Environment configuration
+export * from './env-config';
+
 // Default configuration export
 export { default as config } from './config';

@@ -201,7 +201,7 @@ export const commonSchemas = {
  * SQL injection prevention
  */
 export function sanitizeSQL(input: string): string {
-  return input.replace(/[';\x00\x08\x09\x1a\n\r"'\\%]/g, char => {
+  return input.replace(/[';\x00\x08\x09\x1a\n\r"\\%]/g, char => {
     switch (char) {
       case "'":
         return "''";

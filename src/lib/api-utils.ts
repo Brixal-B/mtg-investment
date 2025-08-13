@@ -171,7 +171,7 @@ export function validateFileUpload(file: File) {
   
   // Check file extension
   const extension = `.${file.name.toLowerCase().split('.').pop()}`;
-  if (!VALIDATION.ALLOWED_FILE_EXTENSIONS.includes(extension)) {
+  if (!VALIDATION.ALLOWED_FILE_EXTENSIONS.includes(extension as any)) {
     throw createApiError(
       `Invalid file type: ${extension} (allowed: ${VALIDATION.ALLOWED_FILE_EXTENSIONS.join(', ')})`,
       400,
