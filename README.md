@@ -72,14 +72,17 @@ npm start
 - Snapshots are stored in `/tmp/price-history.json` (file-based, for prototyping).
 
 ## MTGJSON Integration
-- `download-mtgjson.js`: Downloads the latest MTGJSON file (e.g., AllPrintings.json).
-- `import-mtgjson-to-sqlite.js`: Imports MTGJSON data into a SQLite database for advanced querying.
+- `scripts/download-mtgjson.js`: Downloads the latest MTGJSON file (e.g., AllPrintings.json).
+- `scripts/import-mtgjson-to-sqlite.js`: Imports MTGJSON data into a SQLite database for advanced querying.
+- Additional utility scripts in `scripts/` directory for data processing and validation.
 
 ### Example usage:
 ```bash
-node download-mtgjson.js AllPrintings.json ./AllPrintings.json
-node import-mtgjson-to-sqlite.js ./AllPrintings.json ./cards.db
+node scripts/download-mtgjson.js AllPrintings.json ./AllPrintings.json
+node scripts/import-mtgjson-to-sqlite.js ./AllPrintings.json ./cards.db
 ```
+
+See [`scripts/README.md`](./scripts/README.md) for complete script documentation.
 
 ## Customization
 - You can extend the backend to use a real database (PostgreSQL, MongoDB, etc.) for persistent, multi-user price history.
