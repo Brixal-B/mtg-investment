@@ -240,6 +240,26 @@ export const PriceOperations = {
     `, [cardUuid]);
   },
 
+  async ensureCardExists(cardUuid: string, cardName?: string) {
+    // Check if card already exists
+    const existingCard = await db.get('SELECT uuid FROM cards WHERE uuid = ?', [cardUuid]);
+    
+    if (!existingCard) {
+      // Create a minimal card record for missing cards
+      const cardData = {
+        uuid: cardUuid,
+        name: cardName || `Unknown Card (${cardUuid.slice(0, 8)}...)`,
+        set_code: 'UNKNOWN',
+        set_name: 'Unknown Set'
+      };
+      
+      await CardOperations.insertCard(cardData);
+      console.log(`Created minimal card record for UUID: ${cardUuid}`);
+    }
+    
+    return cardUuid;
+  },
+
   async insertPriceRecord(priceData: unknown) {
     // Validate input data
     if (!priceData || typeof priceData !== 'object') {
