@@ -13,7 +13,7 @@ initializeFileSystem().catch(console.error);
 
 export const POST = withErrorHandling(async (): Promise<NextResponse> => {
   let removed = false;
-  let messages: string[] = [];
+  const messages: string[] = [];
   
   // Remove the main lock file
   if (fileExists(FILES.IMPORT_PROGRESS_LOCK)) {

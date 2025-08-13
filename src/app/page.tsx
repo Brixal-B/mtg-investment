@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Card, ApiResponse, AdminStatus, DownloadProgress, ImportProgress } from '@/types';
+import { Card } from '@/types';
 import { 
   DashboardCards, 
   defaultDashboardCards, 

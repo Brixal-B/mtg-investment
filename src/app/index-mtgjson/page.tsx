@@ -1,14 +1,11 @@
 
 "use client";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { MTGCard, PriceSnapshot } from '@/types';
 
 export default function IndexMtgjsonPage() {
   const [index, setIndex] = useState<MTGCard[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingPhase, setLoadingPhase] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState("");
   const [setFilter, setSetFilter] = useState("");
   const [minPrice, setMinPrice] = useState("");
@@ -43,7 +40,7 @@ export default function IndexMtgjsonPage() {
             setIndex(cards);
           }
         }
-      } catch (e) {
+      } catch {
         // No processed data available - user needs to use admin tools
         console.log("No processed data available");
       }
@@ -66,9 +63,9 @@ export default function IndexMtgjsonPage() {
             <br />2. Then download the processed data for analysis
           </div>
           <div className="mt-3">
-            <a href="/" className="inline-block px-4 py-2 bg-yellow-600 hover:bg-yellow-500 rounded text-white font-semibold transition">
+            <Link href="/" className="inline-block px-4 py-2 bg-yellow-600 hover:bg-yellow-500 rounded text-white font-semibold transition">
               Go to Admin Tools
-            </a>
+            </Link>
           </div>
         </div>
         {index.length > 0 && (

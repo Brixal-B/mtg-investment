@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import fs from 'fs';
 import { 
   FILES,
   downloadWithProgress,
@@ -22,7 +23,6 @@ export const POST = withErrorHandling(async (): Promise<NextResponse> => {
       FILES.MTGJSON_ALLPRICES,
       (progress) => {
         // Write progress to file synchronously for immediate availability
-        const fs = require('fs');
         fs.writeFileSync(FILES.DOWNLOAD_PROGRESS, JSON.stringify(progress));
       }
     );
