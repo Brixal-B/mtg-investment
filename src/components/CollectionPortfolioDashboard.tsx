@@ -5,7 +5,8 @@ import PortfolioOverview from '@/components/portfolio/PortfolioOverview';
 import TopHoldings from '@/components/portfolio/TopHoldings';
 import DiversificationCharts from '@/components/portfolio/DiversificationCharts';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import { BarChart3, TrendingUp, PieChart } from 'lucide-react';
+import AddCardModal from '@/components/AddCardModal';
+import { BarChart3, TrendingUp, PieChart, Plus } from 'lucide-react';
 
 interface CollectionPortfolioDashboardProps {
   userId?: string;
@@ -113,17 +114,65 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
   const [portfolio, setPortfolio] = useState<CollectionPortfolio | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'holdings' | 'diversification'>('overview');
+  const [showAddModal, setShowAddModal] = useState(false);
+
+  const fetchPortfolio = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/portfolio?userId=${userId}`);
+      const data = await response.json();
+      
+      if (data.ok) {
+        setPortfolio(data.data);
+      } else {
+        console.error('Failed to fetch portfolio:', data.error);
+        // Fallback to mock data if API fails
+        setPortfolio(generateMockPortfolio());
+      }
+    } catch (error) {
+      console.error('Error fetching portfolio:', error);
+      // Fallback to mock data if API fails
+      setPortfolio(generateMockPortfolio());
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddCards = async (cards: any[]) => {
+    try {
+      const response = await fetch('/api/portfolio', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          cards
+        })
+      });
+      
+      const data = await response.json();
+      
+      if (data.ok) {
+        // Refresh portfolio data
+        await fetchPortfolio();
+      } else {
+        console.error('Failed to add cards:', data.error);
+        alert('Failed to add cards: ' + data.error);
+      }
+    } catch (error) {
+      console.error('Error adding cards:', error);
+      alert('Error adding cards');
+    }
+  };
 
   useEffect(() => {
-    setTimeout(() => {
-      setPortfolio(generateMockPortfolio());
-      setLoading(false);
-    }, 1000);
+    fetchPortfolio();
   }, [userId]);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-secondary-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <LoadingSpinner size="lg" />
       </div>
     );
@@ -131,10 +180,10 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
 
   if (!portfolio) {
     return (
-      <div className="min-h-screen bg-secondary-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <div className="text-secondary-600 text-lg font-medium mb-2">No portfolio data available</div>
-          <button className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg">
+          <div className="text-gray-600 text-lg font-medium mb-2">No portfolio data available</div>
+          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
             Import Collection
           </button>
         </div>
@@ -143,11 +192,20 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
   }
 
   return (
-    <div className="min-h-screen bg-secondary-50 p-6">
+    <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-secondary-900 mb-2">Collection Portfolio</h1>
-          <p className="text-secondary-600">Track your Magic collection's performance and value</p>
+        <div className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Collection Portfolio</h1>
+            <p className="text-gray-600">Track your Magic collection's performance and value</p>
+          </div>
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            <Plus size={20} className="mr-2" />
+            Add Cards
+          </button>
         </div>
 
         <div className="mb-8">
@@ -179,6 +237,12 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
         {activeTab === 'holdings' && <TopHoldings holdings={portfolio.topHoldings} />}
         {activeTab === 'diversification' && <DiversificationCharts diversification={portfolio.diversification} />}
       </div>
+      
+      <AddCardModal
+        isOpen={showAddModal}
+        onClose={() => setShowAddModal(false)}
+        onAdd={handleAddCards}
+      />
     </div>
   );
 };
