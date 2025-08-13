@@ -1,1 +1,0 @@
-// admin functionality E2E test implementation

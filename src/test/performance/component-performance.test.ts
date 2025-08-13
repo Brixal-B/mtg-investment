@@ -1,1 +1,0 @@
-// component performance test implementation

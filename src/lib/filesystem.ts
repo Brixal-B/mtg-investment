@@ -40,10 +40,21 @@ export async function safeWriteFile(filePath: string, data: string, encoding: Bu
 export async function readJsonFile<T = any>(filePath: string): Promise<T> {
   try {
     const content = await safeReadFile(filePath);
+    
+    // Check if content is empty or just whitespace
+    if (!content || content.trim().length === 0) {
+      throw new Error(`Empty or whitespace-only JSON file: ${filePath}`);
+    }
+    
+    // Try to parse the JSON
     return JSON.parse(content);
   } catch (error) {
     if (error instanceof SyntaxError) {
-      throw new Error(`Invalid JSON in file: ${filePath}`);
+      // Provide more detailed error information for JSON syntax errors
+      const message = error.message.includes('Unexpected end of JSON input') 
+        ? `Incomplete or truncated JSON file: ${filePath}. The file may be corrupted or still being written.`
+        : `Invalid JSON syntax in file: ${filePath}. Error: ${error.message}`;
+      throw new Error(message);
     }
     throw error;
   }

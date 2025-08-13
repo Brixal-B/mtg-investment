@@ -34,21 +34,21 @@ export default function DashboardCards({ cards }: DashboardCardsProps) {
 // Default dashboard cards configuration
 export const defaultDashboardCards: DashboardCard[] = [
   {
-    title: "Database",
-    description: "Browse all cards and prices in the MTGJSON database.",
-    href: "/index-mtgjson",
-    linkText: "Go to Database"
+    title: "Collection Portfolio",
+    description: "Track your collection value, performance, and analytics.",
+    href: "/portfolio",
+    linkText: "View Portfolio"
   },
   {
-    title: "Admin Tools",
-    description: "Download, import, and manage MTGJSON and price history files.",
-    href: "#admin-tools",
-    linkText: "Go to Tools"
+    title: "Deck Builder",
+    description: "Build decks with format validation and mana curve analysis.",
+    href: "/deck-builder",
+    linkText: "Build Decks"
   },
   {
-    title: "Collection Viewer",
-    description: "Upload your Cardsphere CSV to view your collection with images and prices.",
-    href: "#collection-viewer",
-    linkText: "Go to Viewer"
+    title: "Wishlist Manager",
+    description: "Track wanted cards and set up price alerts.",
+    href: "/wishlist",
+    linkText: "Manage Wishlist"
   }
 ];

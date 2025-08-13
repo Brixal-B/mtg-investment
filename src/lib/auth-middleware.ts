@@ -87,7 +87,9 @@ export function withRateLimit(
   options: { maxRequests: number; windowMs: number } = { maxRequests: 100, windowMs: 60000 }
 ) {
   return async (request: NextRequest, ...args: any[]) => {
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = request.headers.get('x-forwarded-for') || 
+               request.headers.get('x-real-ip') || 
+               'unknown';
     const now = Date.now();
     
     const rateLimitData = rateLimitMap.get(ip);

@@ -1,0 +1,287 @@
+{
+  "timestamp": "2025-08-12T20:30:17.424Z",
+  "stats": {
+    "filesRemoved": 30,
+    "directoriesRemoved": 1,
+    "bytesFreed": 13294,
+    "errors": 24
+  },
+  "summary": "Cleanup completed: 30 files and 1 directories removed, 12.98 KB freed",
+  "log": [
+    {
+      "timestamp": "2025-08-12T20:30:17.270Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/utils/typeUtils.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.270Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/utils/csvParser.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.271Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/services/priceService.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.271Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/validation.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.271Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/performance-monitor.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.271Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/filesystem.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.272Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/database.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.272Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/cache-manager.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.272Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/auth-service.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.273Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/lib/api-utils.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.273Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/VirtualizedList.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.273Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/LoginForm.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.273Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/InventoryTable.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.273Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/CardGrid.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/CardFilters.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/unit/components/AdminToolsPanel.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/security/input-validation.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/security/authentication-security.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/security/api-security.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.274Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/performance/memory-usage.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/performance/load-testing.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/performance/component-performance.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/integration/database/database-operations.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/integration/api/price-history.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/integration/api/auth.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.275Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/integration/api/admin.test.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.283Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/e2e/user-journey.spec.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.283Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/e2e/card-management.spec.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.283Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/e2e/authentication-flow.spec.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.284Z",
+      "level": "success",
+      "message": "Removed file (Test files): src/test/e2e/admin-functionality.spec.ts"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "success",
+      "message": "Removed directory (Test files): src/test"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/utils: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/utils'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/unit: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/unit'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/setup.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/setup.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/security: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/security'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/performance: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/performance'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/mocks: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/mocks'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/integration: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/integration'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/fixtures: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/fixtures'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/e2e: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/e2e'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/utils/test-helpers.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/utils/test-helpers.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/utils/render-utils.tsx: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/utils/render-utils.tsx'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/utils/api-test-utils.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/utils/api-test-utils.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/unit/utils: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/unit/utils'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/unit/services: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/unit/services'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/unit/lib: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/unit/lib'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/unit/components: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/unit/components'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/mocks/server.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/mocks/server.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/mocks/handlers.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/mocks/handlers.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/mocks/database-mocks.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/mocks/database-mocks.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/integration/database: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/integration/database'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/integration/api: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/integration/api'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/fixtures/user-data.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/fixtures/user-data.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/fixtures/card-data.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/fixtures/card-data.ts'"
+    },
+    {
+      "timestamp": "2025-08-12T20:30:17.295Z",
+      "level": "error",
+      "message": "Error removing /workspaces/mtg-investment-next/src/test/fixtures/api-responses.ts: ENOENT: no such file or directory, stat '/workspaces/mtg-investment-next/src/test/fixtures/api-responses.ts'"
+    }
+  ]
+}

@@ -76,9 +76,9 @@ class AuthService {
       role: user.role
     };
 
-    return jwt.sign(payload, AUTH_CONFIG.jwt.secret, {
+    return jwt.sign(payload, AUTH_CONFIG.jwt.secret as string, {
       expiresIn: AUTH_CONFIG.jwt.expiresIn
-    });
+    } as jwt.SignOptions);
   }
 
   /**
@@ -90,9 +90,9 @@ class AuthService {
       type: 'refresh'
     };
 
-    return jwt.sign(payload, AUTH_CONFIG.jwt.secret, {
+    return jwt.sign(payload, AUTH_CONFIG.jwt.secret as string, {
       expiresIn: AUTH_CONFIG.jwt.refreshExpiresIn
-    });
+    } as jwt.SignOptions);
   }
 
   /**
@@ -100,7 +100,7 @@ class AuthService {
    */
   verifyToken(token: string): JWTPayload | null {
     try {
-      return jwt.verify(token, AUTH_CONFIG.jwt.secret) as JWTPayload;
+      return jwt.verify(token, AUTH_CONFIG.jwt.secret as string) as JWTPayload;
     } catch (error) {
       console.error('JWT verification failed:', error);
       return null;

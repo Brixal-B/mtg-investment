@@ -6,22 +6,20 @@
 export type {
   MTGCard,
   ProcessedCardPrice,
-  PriceSnapshot,
-  ComponentProps
+  PriceSnapshot
 } from '../types';
 
 // Re-export commonly used utilities
 export {
-  formatCurrency,
-  calculatePriceChange,
-  validateCardData
+  fetchWithTimeout,
+  downloadWithProgress,
+  validateFileUpload
 } from './api-utils';
 
 // Lazy-loaded heavy dependencies
 export const getLazyComponents = () => ({
   VirtualizedList: () => import('../components/VirtualizedList'),
-  ImageOptimizer: () => import('../components/ImageOptimizer'),
-  ChartComponent: () => import('../components/ChartComponent')
+  ImageOptimizer: () => import('../components/ImageOptimizer')
 });
 
 // Performance utilities

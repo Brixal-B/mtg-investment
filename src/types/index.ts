@@ -16,6 +16,29 @@ export type {
   CardSearchResult,
 } from './mtg';
 
+// Player-focused types
+export type {
+  CollectionPortfolio,
+  PortfolioPerformance,
+  TopHolding,
+  DiversificationMetrics,
+  RecentActivity,
+  Deck,
+  DeckCard,
+  DeckStats,
+  MTGFormat,
+  WishlistItem,
+  PriceAlert,
+  MarketTrend,
+  TrendSignal,
+  CollectionAnalytics,
+  CollectionInsight,
+  CollectionRecommendation,
+  RiskMetrics,
+  AdvancedCardFilter,
+  UserPreferences,
+} from './player';
+
 // API Types
 export type {
   AppError,
@@ -34,7 +57,14 @@ export type {
   CollectionItem,
   DatabasePriceSnapshot,
   ImportLog,
-  DatabaseInfo
+  DatabaseInfo,
+  SystemHealthStatus,
+  DatabaseHealth,
+  PerformanceMetrics,
+  FileSystemInfo,
+  SecurityStatus,
+  ApplicationInfo,
+  SystemMetrics
 } from './api';
 
 // Component and UI types

@@ -145,6 +145,7 @@ export const CardOperations = {
   },
 
   async insertCard(cardData: unknown) {
+    const card = cardData as any; // Type assertion for unknown data
     const sql = `
       INSERT OR REPLACE INTO cards 
       (uuid, name, set_code, set_name, collector_number, rarity, mana_cost, cmc, 
@@ -154,23 +155,23 @@ export const CardOperations = {
     `;
     
     return db.run(sql, [
-      cardData.uuid,
-      cardData.name,
-      cardData.set_code,
-      cardData.set_name,
-      cardData.collector_number,
-      cardData.rarity,
-      cardData.mana_cost,
-      cardData.cmc,
-      cardData.type_line,
-      cardData.oracle_text,
-      cardData.power,
-      cardData.toughness,
-      JSON.stringify(cardData.colors),
-      JSON.stringify(cardData.color_identity),
-      JSON.stringify(cardData.legalities),
-      JSON.stringify(cardData.image_uris),
-      cardData.scryfall_id
+      card.uuid,
+      card.name,
+      card.set_code,
+      card.set_name,
+      card.collector_number,
+      card.rarity,
+      card.mana_cost,
+      card.cmc,
+      card.type_line,
+      card.oracle_text,
+      card.power,
+      card.toughness,
+      JSON.stringify(card.colors),
+      JSON.stringify(card.color_identity),
+      JSON.stringify(card.legalities),
+      JSON.stringify(card.image_uris),
+      card.scryfall_id
     ]);
   },
 
@@ -205,6 +206,7 @@ export const PriceOperations = {
   },
 
   async insertPriceRecord(priceData: unknown) {
+    const price = priceData as any; // Type assertion for unknown data
     const sql = `
       INSERT OR REPLACE INTO price_history 
       (card_uuid, date, price_usd, price_usd_foil, price_eur, price_tix, source)
@@ -212,13 +214,13 @@ export const PriceOperations = {
     `;
     
     return db.run(sql, [
-      priceData.card_uuid,
-      priceData.date,
-      priceData.price_usd,
-      priceData.price_usd_foil,
-      priceData.price_eur,
-      priceData.price_tix,
-      priceData.source
+      price.card_uuid,
+      price.date,
+      price.price_usd,
+      price.price_usd_foil,
+      price.price_eur,
+      price.price_tix,
+      price.source
     ]);
   },
 
@@ -262,6 +264,7 @@ export const CollectionOperations = {
   },
 
   async addToCollection(cardUuid: string, quantity = 1, options: unknown = {}) {
+    const opts = options as any; // Type assertion for unknown data
     const sql = `
       INSERT OR REPLACE INTO collections 
       (user_id, card_uuid, quantity, condition, foil, purchase_price, purchase_date, notes, updated_at)
@@ -269,14 +272,14 @@ export const CollectionOperations = {
     `;
     
     return db.run(sql, [
-      options.user_id || 'default',
+      opts.user_id || 'default',
       cardUuid,
       quantity,
-      options.condition || 'near_mint',
-      options.foil || false,
-      options.purchase_price,
-      options.purchase_date,
-      options.notes
+      opts.condition || 'near_mint',
+      opts.foil || false,
+      opts.purchase_price,
+      opts.purchase_date,
+      opts.notes
     ]);
   },
 

@@ -56,8 +56,8 @@ export const POST = withErrorHandling(async (req: NextRequest): Promise<NextResp
   
   // Build command with debug flag if requested
   const command = debugMode 
-    ? 'node load-mtgjson-price-history.js --debug' 
-    : 'node load-mtgjson-price-history.js';
+    ? 'node scripts/load-mtgjson-price-history.js --debug' 
+    : 'node scripts/load-mtgjson-price-history.js';
   
   console.log(`Starting import command: ${command}`);
   

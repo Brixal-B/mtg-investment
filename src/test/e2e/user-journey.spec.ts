@@ -1,1 +1,0 @@
-// user journey E2E test implementation

@@ -207,10 +207,10 @@ export function sanitizeSQL(input: string): string {
         return "''";
       case '"':
         return '""';
-      case '\':
-        return '\\';
+      case '\\':
+        return '\\\\';
       case '%':
-        return '\%';
+        return '\\%';
       default:
         return '';
     }

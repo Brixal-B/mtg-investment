@@ -188,15 +188,74 @@ export interface ImportLog {
 }
 
 export interface DatabaseInfo {
-  tables: Array<{ table: string; count: number }>;
-  priceData: {
-    earliest_date?: string;
-    latest_date?: string;
-    total_records?: number;
-  };
-  collection: {
-    total_value?: number;
-    card_count?: number;
-  };
+  path: string;
+  exists: boolean;
+  size: number;
+  tables: string[];
+  lastBackup?: string;
+}
+
+// System monitoring types
+export interface SystemHealthStatus {
+  status: 'healthy' | 'warning' | 'critical';
+  uptime: number;
+  cpuUsage: number;
+  memoryUsage: number;
+  totalMemory: number;
+  lastCheck: string;
+}
+
+export interface DatabaseHealth {
+  status: 'healthy' | 'warning' | 'critical';
+  activeConnections: number;
+  maxConnections: number;
+  totalRecords: number;
+  avgQueryTime: number;
+  lastBackup?: string;
+  connectionErrors: number;
+}
+
+export interface PerformanceMetrics {
+  avgResponseTime: number;
+  requestsPerMinute: number;
+  cacheHitRate: number;
+  errorRate: number;
+  throughput: number;
+  activeUsers: number;
+}
+
+export interface FileSystemInfo {
+  dataDirectory: string;
+  totalSize: number;
+  freeSpace: number;
+  fileCount: number;
+  lastCleanup?: string;
+}
+
+export interface SecurityStatus {
+  authEnabled: boolean;
+  rateLimitEnabled: boolean;
+  activeSessions: number;
+  failedLogins24h: number;
+  lastSecurityScan?: string;
+  vulnerabilities: number;
+}
+
+export interface ApplicationInfo {
+  version: string;
+  environment: string;
+  buildHash: string;
+  startTime: string;
+  nodeVersion: string;
+  dependencies: Record<string, string>;
+}
+
+export interface SystemMetrics {
+  systemHealth: SystemHealthStatus;
+  database: DatabaseHealth;
+  performance: PerformanceMetrics;
+  fileSystem: FileSystemInfo;
+  security: SecurityStatus;
+  application: ApplicationInfo;
   timestamp: string;
 }
