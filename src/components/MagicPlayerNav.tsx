@@ -18,6 +18,13 @@ const navigationItems = [
     isNew: true
   },
   {
+    label: 'Trading Center',
+    href: '/trade',
+    icon: '🤝',
+    description: 'Trade cards with other collectors',
+    isNew: true
+  },
+  {
     label: 'Deck Builder',
     href: '/deck-builder',
     icon: '🃏',
