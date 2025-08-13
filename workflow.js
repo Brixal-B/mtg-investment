@@ -6,8 +6,8 @@
  * This script orchestrates the agent workflow with automatic cleanup after each agent
  */
 
-const CleanupAgent = require('./lib/cleanup-agent');
-const { agentCleanupTasks, universalCleanup } = require('./lib/agent-cleanup-config');
+import CleanupAgent from './lib/cleanup-agent.js';
+import { agentCleanupTasks, universalCleanup } from './lib/agent-cleanup-config.js';
 
 class MultiAgentWorkflow {
   constructor(options = {}) {
@@ -74,7 +74,7 @@ class MultiAgentWorkflow {
     const results = await cleanup.execute();
     
     // Generate workflow summary
-    this.generateWorkflowSummary(results);
+    await this.generateWorkflowSummary(results);
     
     return results;
   }
@@ -82,7 +82,7 @@ class MultiAgentWorkflow {
   /**
    * Generate complete workflow summary
    */
-  generateWorkflowSummary(finalResults) {
+  async generateWorkflowSummary(finalResults) {
     const summary = {
       timestamp: new Date().toISOString(),
       completedAgents: this.completedAgents,
@@ -91,8 +91,8 @@ class MultiAgentWorkflow {
     };
 
     const reportPath = `${this.workspaceRoot}/multi-agent-workflow-report.json`;
-    const fs = require('fs');
-    fs.writeFileSync(reportPath, JSON.stringify(summary, null, 2));
+    const fs = await import('fs');
+    fs.default.writeFileSync(reportPath, JSON.stringify(summary, null, 2));
 
     console.log('\n📊 Multi-Agent Workflow Summary:');
     console.log(`   Agents completed: ${this.completedAgents.length}`);
@@ -199,8 +199,11 @@ async function main() {
   }
 }
 
-if (require.main === module) {
+// CLI Interface can only work with ES modules in a specific way, need to check if this is the main module
+const isMainModule = import.meta.url === `file://${process.argv[1]}`;
+
+if (isMainModule) {
   main().catch(console.error);
 }
 
-module.exports = { MultiAgentWorkflow, SpecializedCleanupAgent };
+export { MultiAgentWorkflow, SpecializedCleanupAgent };

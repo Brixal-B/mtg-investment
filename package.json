@@ -2,6 +2,7 @@
   "name": "mtg-investment-next",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -12,7 +13,11 @@
     "cleanup:agent": "node workflow.js complete",
     "cleanup:final": "node workflow.js final",
     "workflow:complete": "node workflow.js complete",
-    "workflow:final": "node workflow.js final"
+    "workflow:final": "node workflow.js final",
+    "agents:demo": "node agent-demo.js",
+    "agents:demo:full": "node agent-demo.js full",
+    "agents:demo:patterns": "node agent-demo.js patterns",
+    "agents:help": "node agent-demo.js help"
   },
   "dependencies": {
     "next": "15.4.6",

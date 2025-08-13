@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-08-13T02:02:09.807Z",
+  "completedAgents": [],
+  "finalCleanup": {
+    "filesRemoved": 0,
+    "directoriesRemoved": 0,
+    "bytesFreed": 0,
+    "errors": 0
+  },
+  "totalStats": {
+    "filesRemoved": 0,
+    "directoriesRemoved": 0,
+    "bytesFreed": 0,
+    "errors": 0
+  }
+}
