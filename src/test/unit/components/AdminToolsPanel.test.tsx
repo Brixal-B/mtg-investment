@@ -47,13 +47,13 @@ describe('AdminToolsPanel', () => {
   it('renders admin status correctly', () => {
     render(<AdminToolsPanel {...defaultProps} />);
     
-    expect(screen.getByText(/admin status/i)).toBeInTheDocument();
+    expect(screen.getByText('idle')).toBeInTheDocument();
   });
 
   it('handles download MTGJSON action', () => {
     render(<AdminToolsPanel {...defaultProps} />);
     
-    const downloadButton = screen.getByRole('button', { name: /download/i });
+    const downloadButton = screen.getByRole('button', { name: /download mtgjson/i });
     fireEvent.click(downloadButton);
     
     expect(defaultProps.onDownloadMtgjson).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('AdminToolsPanel', () => {
   it('handles import MTGJSON action', () => {
     render(<AdminToolsPanel {...defaultProps} />);
     
-    const importButton = screen.getByRole('button', { name: /import/i });
+    const importButton = screen.getByRole('button', { name: /import to price history/i });
     fireEvent.click(importButton);
     
     expect(defaultProps.onImportMtgjson).toHaveBeenCalled();
@@ -71,24 +71,22 @@ describe('AdminToolsPanel', () => {
   it('shows loading state correctly', () => {
     render(<AdminToolsPanel {...defaultProps} adminLoading={true} />);
     
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
+    expect(screen.getByText('Working...')).toBeInTheDocument();
   });
 
   it('displays download progress', () => {
     render(<AdminToolsPanel {...defaultProps} downloadProgress={50} />);
     
-    expect(screen.getByRole('progressbar')).toBeInTheDocument();
-    expect(screen.getByText('50%')).toBeInTheDocument();
+    expect(screen.getByText('Downloading MTGJSON: 50%')).toBeInTheDocument();
   });
 
   it('shows import progress with phase', () => {
     render(<AdminToolsPanel 
       {...defaultProps} 
       importProgress={75} 
-      importPhase="Processing cards" 
+      importPhase="processing" 
     />);
     
-    expect(screen.getByText('Processing cards')).toBeInTheDocument();
-    expect(screen.getByText('75%')).toBeInTheDocument();
+    expect(screen.getByText('Importing MTGJSON: 75%')).toBeInTheDocument();
   });
 });

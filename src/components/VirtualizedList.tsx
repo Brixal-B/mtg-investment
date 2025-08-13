@@ -2,7 +2,7 @@
  * Virtualized List - High-performance list rendering for large datasets
  */
 
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
 interface VirtualizedListProps<T> {
   items: T[];

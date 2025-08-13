@@ -9,6 +9,14 @@ jest.mock('@/lib/auth-service', () => ({
   login: mockLogin,
 }));
 
+// Mock the Next.js router
+const mockPush = jest.fn();
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
+
 describe('LoginForm', () => {
   const defaultProps = {
     onSuccess: jest.fn(),
@@ -17,6 +25,7 @@ describe('LoginForm', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    mockPush.mockClear();
   });
 
   it('renders login form fields', () => {
