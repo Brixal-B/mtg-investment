@@ -16,12 +16,12 @@ export interface ApiError extends AppError {
 }
 
 // Standard API response wrapper
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   ok?: boolean;
   error?: string;
   data?: T;
   message?: string;
-  details?: string | Record<string, any>;
+  details?: string | Record<string, unknown>;
 }
 
 // Admin tool status and progress types
@@ -65,7 +65,7 @@ export interface MTGJSONFileStatus {
 export interface AppError extends Error {
   code?: string;
   statusCode?: number;
-  details?: Record<string, any>;
+  details?: Record<string, unknown>;
 }
 
 // Configuration types

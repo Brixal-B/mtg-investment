@@ -3,7 +3,6 @@
  */
 
 import { NextResponse } from 'next/server';
-import { AppError } from '@/types';
 
 // Define ApiError interface locally since it wasn't exported
 interface ApiError extends Error {
@@ -113,7 +112,7 @@ export function createApiError(
 /**
  * Async error wrapper for API routes
  */
-export function withErrorHandling<T extends any[], R>(
+export function withErrorHandling<T extends unknown[], R>(
   handler: (...args: T) => Promise<R>
 ) {
   return async (...args: T): Promise<R | NextResponse> => {

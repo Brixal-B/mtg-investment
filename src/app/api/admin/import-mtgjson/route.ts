@@ -12,7 +12,6 @@ import {
   withErrorHandling,
   initializeFileSystem
 } from '@/lib';
-import fs from 'fs';
 
 // Initialize file system on module load
 initializeFileSystem().catch(console.error);
