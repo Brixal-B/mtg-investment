@@ -98,7 +98,7 @@ export function getConfigSummary() {
   };
 }
 
-export default {
+const config = {
   ENV,
   PATHS,
   FILES,
@@ -108,3 +108,5 @@ export default {
   ensureDirectories,
   getConfigSummary,
 };
+
+export default config;

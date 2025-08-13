@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import { AdminStatus, DownloadProgress, ImportProgress } from '@/types';
 import FileStatusPanel from './FileStatusPanel';
 import AdminActionButtons from './AdminActionButtons';
 import ProgressBar from './ProgressBar';

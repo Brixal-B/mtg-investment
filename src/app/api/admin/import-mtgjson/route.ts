@@ -1,19 +1,17 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import fs from 'fs';
 import { exec } from 'child_process';
 import { 
   FILES,
   fileExists,
   readJsonFile,
   deleteFile,
-  VALIDATION,
   createSuccessResponse,
   createErrorResponse,
-  createValidationError,
   withErrorHandling,
   initializeFileSystem
 } from '@/lib';
-import fs from 'fs';
 
 // Initialize file system on module load
 initializeFileSystem().catch(console.error);
@@ -41,7 +39,7 @@ export const POST = withErrorHandling(async (req: NextRequest): Promise<NextResp
           409
         );
       }
-    } catch (error) {
+    } catch {
       // If we can't read the file stats, remove it
       console.log('Removing unreadable import lock file');
       deleteFile(FILES.IMPORT_PROGRESS_LOCK);
@@ -62,7 +60,7 @@ export const POST = withErrorHandling(async (req: NextRequest): Promise<NextResp
   console.log(`Starting import command: ${command}`);
   
   return new Promise((resolve) => {
-    const child = exec(command, (error, stdout, stderr) => {
+    const child = exec(command, (_, stdout, stderr) => {
       // Always remove the lock file when process finishes
       deleteFile(FILES.IMPORT_PROGRESS_LOCK);
       

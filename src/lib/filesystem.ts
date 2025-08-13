@@ -3,7 +3,7 @@
  */
 
 import fs from 'fs/promises';
-import { existsSync, createReadStream, createWriteStream } from 'fs';
+import { existsSync } from 'fs';
 import path from 'path';
 import { FILES, ensureDirectories } from './config';
 import { handleFileError } from './errors';
@@ -37,7 +37,7 @@ export async function safeWriteFile(filePath: string, data: string, encoding: Bu
 /**
  * Safe JSON read with error handling
  */
-export async function readJsonFile<T = any>(filePath: string): Promise<T> {
+export async function readJsonFile<T = unknown>(filePath: string): Promise<T> {
   try {
     const content = await safeReadFile(filePath);
     return JSON.parse(content);
@@ -52,7 +52,7 @@ export async function readJsonFile<T = any>(filePath: string): Promise<T> {
 /**
  * Safe JSON write with pretty formatting
  */
-export async function writeJsonFile<T = any>(filePath: string, data: T): Promise<void> {
+export async function writeJsonFile<T = unknown>(filePath: string, data: T): Promise<void> {
   try {
     const content = JSON.stringify(data, null, 2);
     await safeWriteFile(filePath, content);
@@ -74,7 +74,7 @@ export function fileExists(filePath: string): boolean {
 export async function getFileStats(filePath: string) {
   try {
     return await fs.stat(filePath);
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -93,11 +93,12 @@ export async function getFileSize(filePath: string): Promise<number> {
 export async function deleteFile(filePath: string): Promise<void> {
   try {
     await fs.unlink(filePath);
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Ignore if file doesn't exist
-    if (error.code !== 'ENOENT') {
-      handleFileError(error, 'delete', filePath);
+    if (error && typeof error === 'object' && 'code' in error && error.code === 'ENOENT') {
+      return; // File doesn't exist, that's fine
     }
+    handleFileError(error, 'delete', filePath);
   }
 }
 

@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import { Card } from '@/types';
 
 interface CardGridProps {
@@ -17,9 +18,11 @@ export default function CardGrid({ cards, showNoPrice }: CardGridProps) {
       {cards.map((card, i) => (
         <div key={i} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 hover:border-gray-600 transition">
           {card.imageUrl ? (
-            <img 
+            <Image 
               src={card.imageUrl} 
               alt={card.name} 
+              width={300}
+              height={420}
               className="w-full h-auto object-cover"
               onError={(e) => {
                 const img = e.target as HTMLImageElement;

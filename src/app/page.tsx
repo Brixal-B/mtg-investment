@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Card, ApiResponse, AdminStatus, DownloadProgress, ImportProgress } from '@/types';
+import { Card } from '@/types';
 import { 
   DashboardCards, 
   defaultDashboardCards, 
@@ -12,10 +12,17 @@ import {
 import Papa from "papaparse";
 
 // Utility to trigger backend actions
-async function triggerApiAction(path: string, method: string = 'POST'): Promise<any> {
+async function triggerApiAction(path: string, method: string = 'POST'): Promise<unknown> {
   const res = await fetch(path, { method });
   if (!res.ok) throw new Error(await res.text());
   return res.json ? res.json() : undefined;
+}
+
+// Helper function to get error message safely
+function getErrorMessage(error: unknown): string {
+  if (error instanceof Error) return error.message;
+  if (typeof error === 'string') return error;
+  return 'An unknown error occurred';
 }
 
 export default function Home() {
@@ -110,7 +117,7 @@ export default function Home() {
           sizeEl.textContent = `Snapshots: ${data.length}`;
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error refreshing file status:", error);
     }
   }
@@ -160,7 +167,7 @@ export default function Home() {
           try {
             const res = await fetch("/api/admin/download-mtgjson");
             if (!res.ok) return;
-            const { percent, received, total } = await res.json();
+            const { percent, received } = await res.json();
             setDownloadProgress(percent);
             
             const now = Date.now();
@@ -179,7 +186,7 @@ export default function Home() {
               setAdminStatus("MTGJSON file downloaded to server. You can now import price history.");
               resolve();
             }
-          } catch (e) {
+          } catch {
             // ignore
           }
         }, 1000);
@@ -189,8 +196,8 @@ export default function Home() {
           reject(new Error("Download timeout"));
         }, 10 * 60 * 1000);
       });
-    } catch (error: any) {
-      setAdminStatus(`Download failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
       setDownloadProgress(null);
@@ -257,7 +264,7 @@ export default function Home() {
             if (data.eta) setImportEta(data.eta);
             if (data.processed !== undefined) setImportProcessed(data.processed);
             if (data.total !== undefined) setImportTotal(data.total);
-          } catch (e) {
+          } catch {
             // ignore polling errors
           }
         }, 2000);
@@ -267,8 +274,8 @@ export default function Home() {
           reject(new Error("Import timeout"));
         }, 30 * 60 * 1000);
       });
-    } catch (error: any) {
-      setAdminStatus(`Import failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`Import failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
       setImportProgress(null);
@@ -296,8 +303,8 @@ export default function Home() {
       window.URL.revokeObjectURL(url);
       
       setAdminStatus("✅ Price history downloaded successfully!");
-    } catch (error: any) {
-      setAdminStatus(`Download failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
     }
@@ -322,8 +329,8 @@ export default function Home() {
       window.URL.revokeObjectURL(url);
       
       setAdminStatus("✅ Import log downloaded successfully!");
-    } catch (error: any) {
-      setAdminStatus(`Download failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
     }
@@ -334,8 +341,8 @@ export default function Home() {
       setAdminLoading(true);
       const result = await triggerApiAction("/api/test-json");
       setAdminStatus(`✅ JSON validity test: ${JSON.stringify(result, null, 2)}`);
-    } catch (error: any) {
-      setAdminStatus(`❌ JSON test failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`❌ JSON test failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
     }
@@ -346,8 +353,8 @@ export default function Home() {
       setAdminLoading(true);
       await triggerApiAction("/api/admin/clear-logs");
       setAdminStatus("✅ Logs cleared successfully!");
-    } catch (error: any) {
-      setAdminStatus(`❌ Clear logs failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`❌ Clear logs failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
     }
@@ -358,8 +365,8 @@ export default function Home() {
       setAdminLoading(true);
       await triggerApiAction("/api/admin/clear-import-lock");
       setAdminStatus("✅ Import lock cleared successfully!");
-    } catch (error: any) {
-      setAdminStatus(`❌ Clear lock failed: ${error.message}`);
+    } catch (error: unknown) {
+      setAdminStatus(`❌ Clear lock failed: ${getErrorMessage(error)}`);
     } finally {
       setAdminLoading(false);
     }
@@ -378,7 +385,7 @@ export default function Home() {
         header: true,
         skipEmptyLines: true,
         complete: async (result) => {
-          const data = result.data as any[];
+          const data = result.data as Record<string, string>[];
           setProgress(10);
           
           const cardPromises = data.map(async (row, index) => {
@@ -418,7 +425,7 @@ export default function Home() {
           setLoading(false);
         }
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("File processing error:", error);
       setLoading(false);
     }
