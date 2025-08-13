@@ -79,8 +79,32 @@ const generateMockPortfolio = (): CollectionPortfolio => ({
     byType: [
       { type: 'Artifact', value: 11200.00, percentage: 72.6 },
       { type: 'Instant', value: 2400.00, percentage: 15.6 }
+    ],
+    byFormat: [
+      { format: 'Legacy', value: 13200.00, percentage: 85.6 },
+      { format: 'Vintage', value: 2200.00, percentage: 14.3 }
     ]
-  }
+  },
+  recentActivity: [
+    {
+      id: '1',
+      type: 'purchase',
+      cardName: 'Black Lotus',
+      quantity: 1,
+      amount: 25000.00,
+      date: '2024-08-10',
+      description: 'Acquired mint condition Black Lotus'
+    },
+    {
+      id: '2',
+      type: 'price_change',
+      cardName: 'Time Walk',
+      quantity: 1,
+      amount: 200.00,
+      date: '2024-08-09',
+      description: 'Price increased by $200'
+    }
+  ]
 });
 
 const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> = ({ 
