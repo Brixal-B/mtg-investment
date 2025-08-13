@@ -19,8 +19,8 @@ export const PATHS = {
   // Use system temp directory with fallback
   TEMP_DIR: process.env.TEMP_DIR || process.env.TMPDIR || os.tmpdir(),
   
-  // Data directory - use workspace data directory for development
-  DATA_DIR: process.env.DATA_DIR || (ENV.IS_PRODUCTION ? '/data' : path.join(process.cwd(), 'data')),
+  // Data directory - always use workspace data directory for build safety
+  DATA_DIR: process.env.DATA_DIR || path.join(process.cwd(), 'data'),
   
   // Workspace root for development
   WORKSPACE_ROOT: process.cwd(),
@@ -45,9 +45,10 @@ export const FILES = {
 
 // API configuration
 export const API = {
+  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000',
   MTGJSON_URL: 'https://mtgjson.com/api/v5/AllPrices.json',
-  SCRYFALL_API_BASE: 'https://api.scryfall.com',
   REQUEST_TIMEOUT: 30000, // 30 seconds
+  DOWNLOAD_TIMEOUT: 900000, // 15 minutes for large downloads (Performance Agent optimized)
   RATE_LIMIT_DELAY: 100, // milliseconds between requests
 } as const;
 
@@ -66,7 +67,7 @@ export const VALIDATION = {
   MAX_FILE_SIZE: 1024 * 1024 * 1024 * 2, // 2GB
   ALLOWED_FILE_EXTENSIONS: ['.json', '.csv'],
   IMPORT_TIMEOUT: 30 * 60 * 1000, // 30 minutes
-  DOWNLOAD_TIMEOUT: 10 * 60 * 1000, // 10 minutes
+  DOWNLOAD_TIMEOUT: 20 * 60 * 1000, // 20 minutes (Performance Agent optimized)
 } as const;
 
 /**
