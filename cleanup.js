@@ -5,8 +5,7 @@
  * Usage: node cleanup.js [options]
  */
 
-const CleanupAgent = require('./lib/cleanup-agent');
-const path = require('path');
+import CleanupAgent from './lib/cleanup-agent.js';
 
 // Parse command line arguments
 const args = process.argv.slice(2);
@@ -42,7 +41,7 @@ async function main() {
     console.log('🧹 Starting Cleanup Agent...\n');
     
     const agent = new CleanupAgent(options);
-    const results = await agent.execute();
+    await agent.execute();
     
     console.log('\n🎉 Cleanup completed successfully!');
     
