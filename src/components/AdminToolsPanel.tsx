@@ -128,8 +128,8 @@ export default function AdminToolsPanel({
   ];
 
   return (
-    <section id="admin-tools" className="w-full max-w-4xl bg-gray-900 rounded-xl shadow-lg p-8 mb-12">
-      <h2 className="text-xl font-bold mb-6">Admin / Tools</h2>
+    <section id="admin-tools" className="w-full max-w-4xl bg-gray-900 rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 mb-6 sm:mb-8 lg:mb-12">
+      <h2 className="text-lg sm:text-xl font-bold mb-4 sm:mb-6">Admin / Tools</h2>
       
       <FileStatusPanel 
         files={fileStatus}
@@ -142,33 +142,37 @@ export default function AdminToolsPanel({
         isLoading={adminLoading}
       />
       
-      {/* Progress Bars */}
+      {/* Progress Bars - Mobile optimized */}
       {typeof downloadProgress === 'number' && (
-        <ProgressBar
-          progress={downloadProgress}
-          title="Downloading MTGJSON"
-          color="blue"
-          speed={downloadSpeed || undefined}
-        />
+        <div className="mt-4">
+          <ProgressBar
+            progress={downloadProgress}
+            title="Downloading MTGJSON"
+            color="blue"
+            speed={downloadSpeed || undefined}
+          />
+        </div>
       )}
 
       {typeof importProgress === 'number' && (
-        <ProgressBar
-          progress={importProgress}
-          title="Importing MTGJSON"
-          color="green"
-          phase={importPhase || undefined}
-          rate={importRate || undefined}
-          eta={importEta || undefined}
-          processed={importProcessed || undefined}
-          total={importTotal || undefined}
-        />
+        <div className="mt-4">
+          <ProgressBar
+            progress={importProgress}
+            title="Importing MTGJSON"
+            color="green"
+            phase={importPhase || undefined}
+            rate={importRate || undefined}
+            eta={importEta || undefined}
+            processed={importProcessed || undefined}
+            total={importTotal || undefined}
+          />
+        </div>
       )}
 
-      {/* Status Display */}
-      {adminLoading && <div className="text-blue-400 font-semibold">Working...</div>}
+      {/* Status Display - Mobile responsive */}
+      {adminLoading && <div className="text-blue-400 font-semibold text-sm sm:text-base">Working...</div>}
       {adminStatus && (
-        <div className={`mt-4 p-4 rounded-lg font-mono text-sm whitespace-pre-wrap ${
+        <div className={`mt-4 p-3 sm:p-4 rounded-lg font-mono text-xs sm:text-sm whitespace-pre-wrap overflow-x-auto ${
           adminStatus.includes('failed') ? 'bg-red-900/30 text-red-400 border border-red-700' : 
           'bg-blue-900/30 text-blue-400 border border-blue-700'
         }`}>

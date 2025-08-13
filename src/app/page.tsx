@@ -473,19 +473,20 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center bg-gray-950 text-gray-100 px-4 py-8">
-      {/* Navigation to Enhanced Admin */}
-      <div className="w-full max-w-4xl mb-6 p-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700 rounded-xl">
-        <div className="flex justify-between items-center">
+    <main className="min-h-screen w-full flex flex-col items-center bg-gray-950 text-gray-100 px-3 sm:px-4 py-4 sm:py-8">
+      {/* Navigation to Enhanced Admin - Mobile Optimized */}
+      <div className="w-full max-w-4xl mb-4 sm:mb-6 p-3 sm:p-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700 rounded-xl">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
           <div>
-            <h2 className="text-lg font-semibold text-blue-400">Enhanced Admin Dashboard Available</h2>
-            <p className="text-sm text-gray-400 mt-1">
+            <h2 className="text-base sm:text-lg font-semibold text-blue-400">Enhanced Admin Dashboard Available</h2>
+            <p className="text-xs sm:text-sm text-gray-400 mt-1">
               Access comprehensive system monitoring, security dashboard, and performance metrics
             </p>
           </div>
           <a
             href="/admin"
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+            className="px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg text-center text-sm sm:text-base"
+            style={{ minHeight: '44px' }}
           >
             🚀 Open Enhanced Admin
           </a>
