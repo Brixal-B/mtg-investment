@@ -207,7 +207,7 @@ export function sanitizeSQL(input: string): string {
         return "''";
       case '"':
         return '""';
-      case '\':
+      case '\\':
         return '\\';
       case '%':
         return '\%';
