@@ -115,3 +115,147 @@ export interface FileProcessingStatus {
   eta?: number;
   error?: string;
 }
+
+// Database-related types
+export interface DatabaseCard {
+  id: number;
+  uuid: string;
+  name: string;
+  set_code?: string;
+  set_name?: string;
+  collector_number?: string;
+  rarity?: string;
+  mana_cost?: string;
+  cmc?: number;
+  type_line?: string;
+  oracle_text?: string;
+  power?: string;
+  toughness?: string;
+  colors?: string; // JSON array
+  color_identity?: string; // JSON array
+  legalities?: string; // JSON object
+  image_uris?: string; // JSON object
+  scryfall_id?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PriceRecord {
+  id: number;
+  card_uuid: string;
+  date: string;
+  price_usd?: number;
+  price_usd_foil?: number;
+  price_eur?: number;
+  price_tix?: number;
+  source: 'scryfall' | 'mtgjson' | 'manual';
+  created_at: string;
+}
+
+export interface CollectionItem {
+  id: number;
+  user_id: string;
+  card_uuid: string;
+  quantity: number;
+  condition: 'mint' | 'near_mint' | 'excellent' | 'good' | 'light_played' | 'played' | 'poor';
+  foil: boolean;
+  purchase_price?: number;
+  purchase_date?: string;
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface DatabasePriceSnapshot {
+  id: number;
+  snapshot_date: string;
+  total_value: number;
+  card_count: number;
+  collection_data: string; // JSON array
+  created_at: string;
+}
+
+export interface ImportLog {
+  id: number;
+  operation_type: 'mtgjson_import' | 'price_update' | 'csv_import';
+  status: 'success' | 'error' | 'in_progress';
+  records_processed: number;
+  error_message?: string;
+  metadata?: string; // JSON object
+  started_at: string;
+  completed_at?: string;
+  created_at: string;
+}
+
+export interface DatabaseInfo {
+  path: string;
+  exists: boolean;
+  size: number;
+  tables: string[];
+  lastBackup?: string;
+}
+
+// System monitoring types
+export interface SystemHealthStatus {
+  status: 'healthy' | 'warning' | 'critical';
+  uptime: number;
+  cpuUsage: number;
+  memoryUsage: number;
+  totalMemory: number;
+  lastCheck: string;
+}
+
+export interface DatabaseHealth {
+  status: 'healthy' | 'warning' | 'critical';
+  activeConnections: number;
+  maxConnections: number;
+  totalRecords: number;
+  avgQueryTime: number;
+  lastBackup?: string;
+  connectionErrors: number;
+}
+
+export interface PerformanceMetrics {
+  avgResponseTime: number;
+  requestsPerMinute: number;
+  cacheHitRate: number;
+  errorRate: number;
+  throughput: number;
+  activeUsers: number;
+}
+
+export interface FileSystemInfo {
+  dataDirectory: string;
+  totalSize: number;
+  freeSpace: number;
+  fileCount: number;
+  lastCleanup?: string;
+}
+
+export interface SecurityStatus {
+  authEnabled: boolean;
+  rateLimitEnabled: boolean;
+  activeSessions: number;
+  failedLogins24h: number;
+  lastSecurityScan?: string;
+  vulnerabilities: number;
+}
+
+export interface ApplicationInfo {
+  version: string;
+  environment: string;
+  buildHash: string;
+  startTime: string;
+  nodeVersion: string;
+  dependencies: Record<string, string>;
+}
+
+export interface SystemMetrics {
+  systemHealth: SystemHealthStatus;
+  database: DatabaseHealth;
+  performance: PerformanceMetrics;
+  fileSystem: FileSystemInfo;
+  security: SecurityStatus;
+  application: ApplicationInfo;
+  timestamp: string;
+}

@@ -44,11 +44,12 @@ export async function downloadWithProgress(
   filePath: string,
   onProgress?: (progress: { percent: number; received: number; total: number }) => void
 ): Promise<void> {
-  const fs = await import('fs');
-  const path = await import('path');
+  const fs = require('fs');
+  const path = require('path');
   
   try {
-    const response = await fetchWithTimeout(url);
+    console.log(`Starting download: ${url}`);
+    const response = await fetchWithTimeout(url, {}, 60000); // 60 second timeout for large files
     
     if (!response.ok) {
       throw createApiError(
@@ -58,13 +59,23 @@ export async function downloadWithProgress(
       );
     }
     
+    console.log(`Download response received: ${response.status}`);
     const contentLength = response.headers.get('content-length');
     const total = contentLength ? parseInt(contentLength, 10) : 0;
     let received = 0;
     
+    console.log(`Content length header: "${contentLength}"`);
+    console.log(`Parsed total: ${total} bytes (${(total / 1024 / 1024).toFixed(1)} MB)`);
+    
+    if (total === 0) {
+      console.warn('Warning: Content-Length header is 0 or missing. Progress tracking may be inaccurate.');
+    }
+    
     // Ensure directory exists
     const dir = path.dirname(filePath);
-    await fs.promises.mkdir(dir, { recursive: true });
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
     
     const fileStream = fs.createWriteStream(filePath);
     const reader = response.body?.getReader();
@@ -72,6 +83,8 @@ export async function downloadWithProgress(
     if (!reader) {
       throw createApiError('Failed to read response body', 500, 'RESPONSE_READ_ERROR');
     }
+    
+    console.log(`Starting to write file: ${filePath}`);
     
     try {
       while (true) {
@@ -82,9 +95,14 @@ export async function downloadWithProgress(
         received += value.length;
         fileStream.write(value);
         
-        if (onProgress && total > 0) {
-          const percent = Math.round((received / total) * 100);
-          onProgress({ percent, received, total });
+        if (onProgress) {
+          if (total > 0) {
+            const percent = Math.round((received / total) * 100);
+            onProgress({ percent, received, total });
+          } else {
+            // Progress without total size - just show bytes received
+            onProgress({ percent: 0, received, total: 0 });
+          }
         }
       }
       
@@ -92,8 +110,14 @@ export async function downloadWithProgress(
       
       // Wait for write stream to finish
       await new Promise((resolve, reject) => {
-        fileStream.on('finish', () => resolve(void 0));
-        fileStream.on('error', reject);
+        fileStream.on('finish', () => {
+          console.log(`Download completed: ${filePath}`);
+          resolve(void 0);
+        });
+        fileStream.on('error', (err: unknown) => {
+          console.error('File stream error:', err);
+          reject(err);
+        });
       });
       
     } finally {
@@ -101,11 +125,16 @@ export async function downloadWithProgress(
     }
     
   } catch (error) {
+    console.error('Download error:', error);
+    
     // Clean up partial file on error
     try {
-      await fs.promises.unlink(filePath);
-    } catch {
-      // Ignore cleanup errors
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        console.log('Cleaned up partial file');
+      }
+    } catch (cleanupError) {
+      console.error('Failed to cleanup partial file:', cleanupError);
     }
     throw error;
   }

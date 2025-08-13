@@ -1,6 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Card } from '@/types';
+import { Card, ApiResponse, AdminStatus, DownloadProgress, ImportProgress } from '@/types';
 import { 
   DashboardCards, 
   defaultDashboardCards, 
@@ -12,17 +12,10 @@ import {
 import Papa from "papaparse";
 
 // Utility to trigger backend actions
-async function triggerApiAction(path: string, method: string = 'POST'): Promise<unknown> {
+async function triggerApiAction(path: string, method: string = 'POST'): Promise<any> {
   const res = await fetch(path, { method });
   if (!res.ok) throw new Error(await res.text());
   return res.json ? res.json() : undefined;
-}
-
-// Helper function to get error message safely
-function getErrorMessage(error: unknown): string {
-  if (error instanceof Error) return error.message;
-  if (typeof error === 'string') return error;
-  return 'An unknown error occurred';
 }
 
 export default function Home() {
@@ -138,16 +131,34 @@ export default function Home() {
       return bytesPerSec.toFixed(0) + ' B/s';
     }
     
+    function formatBytes(bytes: number) {
+      if (bytes > 1024 * 1024 * 1024) return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB';
+      if (bytes > 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      if (bytes > 1024) return (bytes / 1024).toFixed(1) + ' KB';
+      return bytes + ' B';
+    }
+    
     try {
       const checkRes = await fetch("/api/admin/check-mtgjson");
       if (checkRes.ok) {
-        const check = await checkRes.json();
+        const checkText = await checkRes.text();
+        let check: any = {};
+        try {
+          check = checkText && checkText.trim() ? JSON.parse(checkText) : {};
+        } catch (parseError) {
+          console.error('Failed to parse check response:', parseError);
+          check = {};
+        }
+        
         if (check.exists) {
+          // Frontend Agent: Check if download is in progress using new API
           const progressRes = await fetch("/api/admin/download-mtgjson");
           if (progressRes.ok) {
-            const progress = await progressRes.json();
-            if (progress.percent && progress.percent < 100) {
-              setAdminStatus(`AllPrices.json is currently downloading: ${progress.percent}% complete.`);
+            const progressData = await progressRes.json();
+            
+            if (progressData.status === 'downloading' && progressData.progress) {
+              const { percent } = progressData.progress;
+              setAdminStatus(`AllPrices.json is currently downloading: ${percent}% complete.`);
               setAdminLoading(false);
               return;
             }
@@ -159,45 +170,75 @@ export default function Home() {
       }
       
       setAdminStatus("Starting MTGJSON download...");
-      const startRes = await fetch("/api/admin/download-mtgjson", { method: "POST" });
-      if (!startRes.ok) throw new Error("Failed to start backend download");
       
-      await new Promise<void>((resolve, reject) => {
-        poller = setInterval(async () => {
-          try {
-            const res = await fetch("/api/admin/download-mtgjson");
-            if (!res.ok) return;
-            const { percent, received } = await res.json();
+      // Frontend Agent: Start download with new async API
+      const startRes = await fetch("/api/admin/download-mtgjson", { 
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      if (!startRes.ok) {
+        const errorText = await startRes.text();
+        console.error('Download start failed:', startRes.status, startRes.statusText, errorText);
+        throw new Error(`Failed to start download: ${startRes.status} ${startRes.statusText} - ${errorText}`);
+      }
+
+      const startResponse = await startRes.json();
+      console.log('🚀 Download started:', startResponse);
+      
+      setAdminStatus(`Download started (ID: ${startResponse.downloadId}). Tracking progress...`);
+
+      // Frontend Agent: Poll for status using new async GET endpoint
+      poller = setInterval(async () => {
+        try {
+          const statusRes = await fetch("/api/admin/download-mtgjson");
+          if (!statusRes.ok) {
+            console.error('Status check failed:', statusRes.status);
+            return;
+          }
+          
+          const statusData = await statusRes.json();
+          
+          if (statusData.error) {
+            console.error('Download error:', statusData.error);
+            clearInterval(poller!);
+            setAdminStatus(`Download failed: ${statusData.error}`);
+            setAdminLoading(false);
+            return;
+          }
+
+          const { status, progress } = statusData;
+          
+          if (status === 'downloading' && progress) {
+            const { percent, received, total, speed } = progress;
             setDownloadProgress(percent);
             
-            const now = Date.now();
-            const elapsed = (now - lastTime) / 1000;
-            if (elapsed > 0.3) {
-              const bytes = received - lastReceived;
-              const speed = bytes / elapsed;
+            // Convert bytes per second to readable format
+            if (speed) {
               setDownloadSpeed(formatSpeed(speed));
-              lastTime = now;
-              lastReceived = received;
             }
             
-            if (percent >= 100) {
-              clearInterval(poller!);
-              setDownloadSpeed(null);
-              setAdminStatus("MTGJSON file downloaded to server. You can now import price history.");
-              resolve();
-            }
-          } catch {
-            // ignore
+            setAdminStatus(`Downloading: ${percent}% complete (${formatBytes(received)}/${formatBytes(total)})`);
+          } else if (status === 'completed') {
+            clearInterval(poller!);
+            setDownloadProgress(100);
+            setDownloadSpeed(null);
+            setAdminStatus("MTGJSON file downloaded successfully! You can now import price history.");
+            setAdminLoading(false);
+          } else if (status === 'failed') {
+            clearInterval(poller!);
+            setAdminStatus(`Download failed: ${statusData.error || 'Unknown error'}`);
+            setAdminLoading(false);
           }
-        }, 1000);
-        
-        setTimeout(() => {
-          clearInterval(poller!);
-          reject(new Error("Download timeout"));
-        }, 10 * 60 * 1000);
-      });
+        } catch (error) {
+          console.error('Status polling error:', error);
+        }
+      }, 2000); // Poll every 2 seconds
+
     } catch (error: unknown) {
-      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`Download failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
       setDownloadProgress(null);
@@ -264,7 +305,7 @@ export default function Home() {
             if (data.eta) setImportEta(data.eta);
             if (data.processed !== undefined) setImportProcessed(data.processed);
             if (data.total !== undefined) setImportTotal(data.total);
-          } catch {
+          } catch (e) {
             // ignore polling errors
           }
         }, 2000);
@@ -275,7 +316,7 @@ export default function Home() {
         }, 30 * 60 * 1000);
       });
     } catch (error: unknown) {
-      setAdminStatus(`Import failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`Import failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
       setImportProgress(null);
@@ -304,7 +345,7 @@ export default function Home() {
       
       setAdminStatus("✅ Price history downloaded successfully!");
     } catch (error: unknown) {
-      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`Download failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
     }
@@ -330,7 +371,7 @@ export default function Home() {
       
       setAdminStatus("✅ Import log downloaded successfully!");
     } catch (error: unknown) {
-      setAdminStatus(`Download failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`Download failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
     }
@@ -342,7 +383,7 @@ export default function Home() {
       const result = await triggerApiAction("/api/test-json");
       setAdminStatus(`✅ JSON validity test: ${JSON.stringify(result, null, 2)}`);
     } catch (error: unknown) {
-      setAdminStatus(`❌ JSON test failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`❌ JSON test failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
     }
@@ -354,7 +395,7 @@ export default function Home() {
       await triggerApiAction("/api/admin/clear-logs");
       setAdminStatus("✅ Logs cleared successfully!");
     } catch (error: unknown) {
-      setAdminStatus(`❌ Clear logs failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`❌ Clear logs failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
     }
@@ -366,7 +407,7 @@ export default function Home() {
       await triggerApiAction("/api/admin/clear-import-lock");
       setAdminStatus("✅ Import lock cleared successfully!");
     } catch (error: unknown) {
-      setAdminStatus(`❌ Clear lock failed: ${getErrorMessage(error)}`);
+      setAdminStatus(`❌ Clear lock failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally {
       setAdminLoading(false);
     }
@@ -385,7 +426,7 @@ export default function Home() {
         header: true,
         skipEmptyLines: true,
         complete: async (result) => {
-          const data = result.data as Record<string, string>[];
+          const data = result.data as any[];
           setProgress(10);
           
           const cardPromises = data.map(async (row, index) => {
@@ -433,6 +474,24 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center bg-gray-950 text-gray-100 px-4 py-8">
+      {/* Navigation to Enhanced Admin */}
+      <div className="w-full max-w-4xl mb-6 p-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700 rounded-xl">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-lg font-semibold text-blue-400">Enhanced Admin Dashboard Available</h2>
+            <p className="text-sm text-gray-400 mt-1">
+              Access comprehensive system monitoring, security dashboard, and performance metrics
+            </p>
+          </div>
+          <a
+            href="/admin"
+            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
+          >
+            🚀 Open Enhanced Admin
+          </a>
+        </div>
+      </div>
+
       <DashboardCards cards={defaultDashboardCards} />
       
       <AdminToolsPanel
