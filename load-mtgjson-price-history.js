@@ -217,7 +217,6 @@ async function main() {
           
           // Search through the MTGJSON price structure for USD prices
           // Structure: priceData.paper.tcgplayer.retail.normal[date] or priceData.paper.tcgplayer.retail.foil[date]
-          // Also support simplified structure: priceData.paper[date] for testing
           if (priceData.paper?.tcgplayer?.retail?.normal?.[targetDate]) {
             foundPrice = priceData.paper.tcgplayer.retail.normal[targetDate];
           } else if (priceData.paper?.tcgplayer?.retail?.foil?.[targetDate]) {
@@ -226,12 +225,6 @@ async function main() {
             foundPrice = priceData.paper.cardkingdom.retail.normal[targetDate];
           } else if (priceData.paper?.cardkingdom?.retail?.foil?.[targetDate]) {
             foundPrice = priceData.paper.cardkingdom.retail.foil[targetDate];
-          } else if (priceData.paper?.[targetDate]) {
-            // Simplified structure for testing
-            foundPrice = priceData.paper[targetDate];
-          } else if (priceData.mtgo?.[targetDate]) {
-            // MTGO prices as fallback
-            foundPrice = priceData.mtgo[targetDate];
           }
           
           if (foundPrice && typeof foundPrice === 'number' && foundPrice > 0 && isFinite(foundPrice)) {
@@ -360,13 +353,13 @@ async function main() {
         if (DEBUG_CONFIG.VERBOSE_LOGGING) {
           console.log(`\n🐛 🔍 SAMPLE CARDS WITH PRICES:`);
           debugStats.cardsWithPrices.slice(0, 5).forEach((card, i) => {
-            console.log(`🐛   ${i+1}. ${card.name} (${card.set}) - $${card.price}`);
+            console.log(`🐛   ${i+1}. UUID: ${card.uuid} - Avg: $${card.avgPrice.toFixed(2)} (${card.priceCount} months)`);
           });
           
           if (debugStats.cardsWithoutPrices.length > 0) {
             console.log(`\n🐛 ❌ SAMPLE CARDS WITHOUT PRICES:`);
             debugStats.cardsWithoutPrices.slice(0, 5).forEach((card, i) => {
-              console.log(`🐛   ${i+1}. ${card.name} (${card.set})`);
+              console.log(`🐛   ${i+1}. UUID: ${card.uuid}`);
             });
           }
         }
@@ -399,6 +392,12 @@ async function main() {
 
   console.log(`\nUploading ${cards.length} cards to ${API_URL}...`);
   
+  // Debug: Check if cards array is valid
+  if (DEBUG_MODE) {
+    console.log(`🐛 Sample card for upload validation:`, JSON.stringify(cards[0], null, 2));
+    console.log(`🐛 Cards array sample:`, cards.slice(0, 2));
+  }
+  
   try {
     // Optimized upload with retry logic and better error handling
     const uploadData = { 
@@ -409,6 +408,16 @@ async function main() {
         dataStructure: 'monthly_prices'
       }
     };
+    
+    if (DEBUG_MODE) {
+      console.log(`🐛 Upload data structure:`, {
+        dateRange: uploadData.dateRange,
+        cardsCount: uploadData.cards.length,
+        metadata: uploadData.metadata,
+        firstCard: uploadData.cards[0]
+      });
+    }
+    
     const uploadBody = JSON.stringify(uploadData);
     
     // Add progress indicator for upload

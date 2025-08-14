@@ -1,0 +1,250 @@
+name: Branch Management
+
+on:
+  # Run weekly to clean up stale branches
+  schedule:
+    - cron: '0 0 * * 0'  # Every Sunday at midnight
+  
+  # Allow manual triggering
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run - only list branches that would be deleted'
+        required: false
+        default: 'true'
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  cleanup-stale-branches:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Configure Git
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+    
+    - name: Fetch all branches
+      run: |
+        git fetch --all --prune
+        git branch -a
+    
+    - name: Identify stale feature branches
+      id: stale-branches
+      run: |
+        echo "Identifying stale feature branches..."
+        
+        # Get current date
+        CURRENT_DATE=$(date +%s)
+        STALE_THRESHOLD=2592000  # 30 days in seconds
+        
+        STALE_BRANCHES=""
+        
+        # Check feature branches
+        for branch in $(git branch -r | grep -E 'origin/feature/' | sed 's/origin\///'); do
+          # Skip if branch has open PR
+          PR_COUNT=$(gh pr list --head "$branch" --state open --json number --jq length)
+          if [ "$PR_COUNT" -gt 0 ]; then
+            echo "Skipping $branch - has open PR"
+            continue
+          fi
+          
+          # Check last commit date
+          LAST_COMMIT=$(git log -1 --format="%ct" "origin/$branch")
+          AGE=$((CURRENT_DATE - LAST_COMMIT))
+          
+          if [ $AGE -gt $STALE_THRESHOLD ]; then
+            echo "Stale branch found: $branch ($(($AGE / 86400)) days old)"
+            STALE_BRANCHES="$STALE_BRANCHES $branch"
+          fi
+        done
+        
+        echo "stale-branches=$STALE_BRANCHES" >> $GITHUB_OUTPUT
+        echo "Stale branches: $STALE_BRANCHES"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: List branches to be deleted
+      run: |
+        echo "## Stale Branches Analysis"
+        echo "The following branches are candidates for deletion:"
+        echo "${{ steps.stale-branches.outputs.stale-branches }}" | tr ' ' '\n' | while read branch; do
+          if [ -n "$branch" ]; then
+            LAST_COMMIT_DATE=$(git log -1 --format="%ci" "origin/$branch")
+            echo "- $branch (last activity: $LAST_COMMIT_DATE)"
+          fi
+        done
+    
+    - name: Delete stale branches (dry run)
+      if: github.event.inputs.dry_run == 'true' || github.event_name == 'schedule'
+      run: |
+        echo "DRY RUN - The following branches would be deleted:"
+        echo "${{ steps.stale-branches.outputs.stale-branches }}" | tr ' ' '\n' | while read branch; do
+          if [ -n "$branch" ]; then
+            echo "Would delete: $branch"
+          fi
+        done
+    
+    - name: Delete stale branches (actual)
+      if: github.event.inputs.dry_run == 'false'
+      run: |
+        echo "Deleting stale branches..."
+        echo "${{ steps.stale-branches.outputs.stale-branches }}" | tr ' ' '\n' | while read branch; do
+          if [ -n "$branch" ]; then
+            echo "Deleting branch: $branch"
+            git push origin --delete "$branch" || echo "Failed to delete $branch"
+          fi
+        done
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Cleanup merged feature branches
+  cleanup-merged-branches:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Find merged feature branches
+      id: merged-branches
+      run: |
+        echo "Finding merged feature branches..."
+        
+        # Update references
+        git fetch --all --prune
+        
+        MERGED_BRANCHES=""
+        
+        # Check for merged feature branches
+        for branch in $(git branch -r | grep -E 'origin/feature/' | sed 's/origin\///'); do
+          # Check if branch is merged into develop
+          if git merge-base --is-ancestor "origin/$branch" "origin/develop" 2>/dev/null; then
+            # Make sure it's not the same as develop
+            if [ "$(git rev-parse origin/$branch)" != "$(git rev-parse origin/develop)" ]; then
+              echo "Merged branch found: $branch"
+              MERGED_BRANCHES="$MERGED_BRANCHES $branch"
+            fi
+          fi
+        done
+        
+        echo "merged-branches=$MERGED_BRANCHES" >> $GITHUB_OUTPUT
+        echo "Merged branches: $MERGED_BRANCHES"
+    
+    - name: Delete merged branches
+      if: steps.merged-branches.outputs.merged-branches != ''
+      run: |
+        echo "Deleting merged feature branches..."
+        echo "${{ steps.merged-branches.outputs.merged-branches }}" | tr ' ' '\n' | while read branch; do
+          if [ -n "$branch" ]; then
+            echo "Deleting merged branch: $branch"
+            git push origin --delete "$branch" || echo "Failed to delete $branch"
+          fi
+        done
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Branch protection validation
+  validate-protection:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Check branch protection rules
+      run: |
+        echo "Validating branch protection rules..."
+        
+        # Check main branch protection
+        MAIN_PROTECTION=$(gh api repos/${{ github.repository }}/branches/main/protection --jq .required_status_checks.strict)
+        if [ "$MAIN_PROTECTION" != "true" ]; then
+          echo "❌ Main branch protection not properly configured"
+          exit 1
+        fi
+        
+        echo "✅ Branch protection rules validated"
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Generate branch health report
+  branch-health-report:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Generate branch health report
+      run: |
+        echo "# 📊 Branch Health Report" > branch-report.md
+        echo "" >> branch-report.md
+        echo "Generated on: $(date)" >> branch-report.md
+        echo "" >> branch-report.md
+        
+        # Active branches
+        echo "## 🌿 Active Branches" >> branch-report.md
+        echo "" >> branch-report.md
+        git branch -r | grep -E 'origin/(main|develop)' | while read branch; do
+          branch_name=$(echo $branch | sed 's/origin\///')
+          last_commit=$(git log -1 --format="%ci" "$branch")
+          echo "- **$branch_name**: $last_commit" >> branch-report.md
+        done
+        
+        # Feature branches
+        echo "" >> branch-report.md
+        echo "## 🔧 Feature Branches" >> branch-report.md
+        echo "" >> branch-report.md
+        
+        FEATURE_COUNT=$(git branch -r | grep -c 'origin/feature/' || echo "0")
+        echo "**Total Feature Branches**: $FEATURE_COUNT" >> branch-report.md
+        echo "" >> branch-report.md
+        
+        if [ $FEATURE_COUNT -gt 0 ]; then
+          git branch -r | grep 'origin/feature/' | head -10 | while read branch; do
+            branch_name=$(echo $branch | sed 's/origin\///')
+            last_commit=$(git log -1 --format="%ci" "$branch")
+            echo "- $branch_name: $last_commit" >> branch-report.md
+          done
+          
+          if [ $FEATURE_COUNT -gt 10 ]; then
+            echo "- ... and $((FEATURE_COUNT - 10)) more" >> branch-report.md
+          fi
+        fi
+        
+        # Release and hotfix branches
+        echo "" >> branch-report.md
+        echo "## 🚀 Release/Hotfix Branches" >> branch-report.md
+        echo "" >> branch-report.md
+        
+        RELEASE_COUNT=$(git branch -r | grep -c -E 'origin/(release|hotfix)/' || echo "0")
+        if [ $RELEASE_COUNT -gt 0 ]; then
+          git branch -r | grep -E 'origin/(release|hotfix)/' | while read branch; do
+            branch_name=$(echo $branch | sed 's/origin\///')
+            last_commit=$(git log -1 --format="%ci" "$branch")
+            echo "- $branch_name: $last_commit" >> branch-report.md
+          done
+        else
+          echo "No active release or hotfix branches" >> branch-report.md
+        fi
+        
+        cat branch-report.md
+    
+    - name: Upload branch report
+      uses: actions/upload-artifact@v4
+      with:
+        name: branch-health-report
+        path: branch-report.md
+        retention-days: 30
