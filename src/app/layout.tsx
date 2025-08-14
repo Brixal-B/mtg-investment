@@ -1,19 +1,17 @@
 
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import DropdownNav from "./components/DropdownNav";
 import MagicPlayerNav from "@/components/MagicPlayerNav";
 
-const geistSans = Geist({
+// Temporary fix for fonts to avoid network issues during build
+const geistSans = {
   variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+};
 
-const geistMono = Geist_Mono({
+const geistMono = {
   variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+};
 
 export const metadata: Metadata = {
   title: "MTG Investment App - Magic Player Tools",

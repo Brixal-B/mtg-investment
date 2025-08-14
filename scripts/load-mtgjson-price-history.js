@@ -217,6 +217,7 @@ async function main() {
           
           // Search through the MTGJSON price structure for USD prices
           // Structure: priceData.paper.tcgplayer.retail.normal[date] or priceData.paper.tcgplayer.retail.foil[date]
+          // Also support simplified structure: priceData.paper[date] for testing
           if (priceData.paper?.tcgplayer?.retail?.normal?.[targetDate]) {
             foundPrice = priceData.paper.tcgplayer.retail.normal[targetDate];
           } else if (priceData.paper?.tcgplayer?.retail?.foil?.[targetDate]) {
@@ -225,6 +226,12 @@ async function main() {
             foundPrice = priceData.paper.cardkingdom.retail.normal[targetDate];
           } else if (priceData.paper?.cardkingdom?.retail?.foil?.[targetDate]) {
             foundPrice = priceData.paper.cardkingdom.retail.foil[targetDate];
+          } else if (priceData.paper?.[targetDate]) {
+            // Simplified structure for testing
+            foundPrice = priceData.paper[targetDate];
+          } else if (priceData.mtgo?.[targetDate]) {
+            // MTGO prices as fallback
+            foundPrice = priceData.mtgo[targetDate];
           }
           
           if (foundPrice && typeof foundPrice === 'number' && foundPrice > 0 && isFinite(foundPrice)) {

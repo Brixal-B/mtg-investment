@@ -22,6 +22,7 @@
     "db:backup": "node scripts/db-backup.js",
     "db:postgres:setup": "node scripts/database-config.js --postgres-setup",
     "db:postgres:test": "node scripts/database-config.js --test-postgres",
+    "db:validate": "node scripts/validate-database.js",
     "test": "jest",
     "test:unit": "jest src/test/unit",
     "test:integration": "jest src/test/integration",

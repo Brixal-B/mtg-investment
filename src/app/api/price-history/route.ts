@@ -64,6 +64,9 @@ export const POST = withErrorHandling(async (req: NextRequest): Promise<NextResp
         for (const [date, price] of Object.entries(card.prices)) {
           if (typeof price === 'number' && price > 0) {
             try {
+              // Ensure card exists before inserting price
+              await PriceOperations.ensureCardExists(card.uuid, card.name);
+              
               await PriceOperations.insertPriceRecord({
                 card_uuid: card.uuid,
                 date: date,
