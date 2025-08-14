@@ -7,6 +7,18 @@ import { authService } from '../../../../lib/auth-service';
 import Database from 'better-sqlite3';
 import path from 'path';
 
+// User interface for database results
+interface UserRecord {
+  id: string;
+  email: string;
+  role: string;
+  name: string;
+  email_verified: boolean;
+  created_at: string;
+  last_login_at: string;
+  [key: string]: any;
+}
+
 export async function GET(request: NextRequest) {
   try {
     // Get token and verify it
@@ -31,7 +43,7 @@ export async function GET(request: NextRequest) {
     const db = new Database(dbPath);
     
     try {
-      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(payload.userId);
+      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(payload.userId) as UserRecord | undefined;
       
       if (!user) {
         return NextResponse.json(
