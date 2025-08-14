@@ -5,26 +5,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { authService, UserRole } from '../../../../lib/auth-service';
 import { validateInput } from '../../../../lib/validation';
-
-// Mock user database (in production, use real database)
-const MOCK_USERS = [
-  {
-    id: '1',
-    email: 'admin@mtginvestment.com',
-    passwordHash: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LNEjsP8QvJq7J9q7e', // "admin123"
-    role: UserRole.ADMIN,
-    name: 'Admin User',
-    createdAt: new Date(),
-  },
-  {
-    id: '2',
-    email: 'user@mtginvestment.com',
-    passwordHash: '$2a$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LNEjsP8QvJq7J9q7e', // "user123"
-    role: UserRole.USER,
-    name: 'Regular User',
-    createdAt: new Date(),
-  }
-];
+import Database from '../../../../lib/database';
 
 export async function POST(request: NextRequest) {
   try {
@@ -45,8 +26,16 @@ export async function POST(request: NextRequest) {
 
     const { email, password } = body;
 
-    // Find user (in production, query database)
-    const user = MOCK_USERS.find(u => u.email === email);
+    // Initialize database connection
+    const { database: db } = Database;
+    await db.initialize();
+
+    // Find user in database
+    const user = await db.get(
+      'SELECT id, email, password_hash, name, role, email_verified, last_login_at FROM users WHERE email = ?',
+      [email]
+    );
+
     if (!user) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
@@ -55,7 +44,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify password
-    const isValidPassword = await authService.verifyPassword(password, user.passwordHash);
+    const isValidPassword = await authService.verifyPassword(password, user.password_hash);
     if (!isValidPassword) {
       return NextResponse.json(
         { error: 'Invalid credentials' },
@@ -63,21 +52,44 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Check if email is verified (optional - you can allow login without verification)
+    if (!user.email_verified) {
+      return NextResponse.json(
+        { 
+          error: 'Email not verified', 
+          code: 'EMAIL_NOT_VERIFIED',
+          email: user.email
+        },
+        { status: 403 }
+      );
+    }
+
+    // Update last login time
+    await db.run(
+      'UPDATE users SET last_login_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [user.id]
+    );
+
+    console.log(`✅ User logged in: ${user.email} (${user.role})`);
+
+    // Convert role string to UserRole enum
+    const userRole = user.role === 'admin' ? UserRole.ADMIN : UserRole.USER;
+
     // Generate tokens
     const token = authService.generateToken({
       id: user.id,
       email: user.email,
-      role: user.role,
-      name: user.name,
-      createdAt: user.createdAt
+      role: userRole,
+      name: user.name || '',
+      createdAt: new Date(user.created_at || Date.now())
     });
 
     const refreshToken = authService.generateRefreshToken({
       id: user.id,
       email: user.email,
-      role: user.role,
-      name: user.name,
-      createdAt: user.createdAt
+      role: userRole,
+      name: user.name || '',
+      createdAt: new Date(user.created_at || Date.now())
     });
 
     // Set authentication cookie
@@ -87,7 +99,9 @@ export async function POST(request: NextRequest) {
         id: user.id,
         email: user.email,
         role: user.role,
-        name: user.name
+        name: user.name,
+        email_verified: user.email_verified,
+        last_login_at: user.last_login_at
       },
       token
     });
