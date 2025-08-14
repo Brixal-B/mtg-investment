@@ -14,22 +14,6 @@ interface MigrationResult {
   error?: string;
 }
 
-/**
- * Database Migration: Create Users Table
- * This migration adds real user management to the MTG Investment platform
- */
-
-import sqlite3 from 'sqlite3';
-import { randomUUID } from 'crypto';
-import bcrypt from 'bcryptjs';
-import path from 'path';
-
-interface MigrationResult {
-  success: boolean;
-  message: string;
-  error?: string;
-}
-
 export async function createUsersTableMigration(dbPath: string): Promise<MigrationResult> {
   return new Promise((resolve, reject) => {
     console.log('🔄 Starting users table migration...');
@@ -177,7 +161,8 @@ export async function createUsersTableMigration(dbPath: string): Promise<Migrati
               });
             });
           } catch (error) {
-            reject({ success: false, message: 'Failed to hash passwords', error: error.message });
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            reject({ success: false, message: 'Failed to hash passwords', error: errorMessage });
           }
         }
         
