@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { Card, ApiResponse, AdminStatus, DownloadProgress, ImportProgress } from '@/types';
 import { 
   DashboardCards, 
@@ -16,6 +17,22 @@ async function triggerApiAction(path: string, method: string = 'POST'): Promise<
   const res = await fetch(path, { method });
   if (!res.ok) throw new Error(await res.text());
   return res.json ? res.json() : undefined;
+}
+
+interface FeatureCard {
+  title: string;
+  description: string;
+  icon: string;
+  link: string;
+  status: 'ready' | 'beta' | 'admin';
+  features: string[];
+}
+
+interface Stats {
+  totalCards?: number;
+  totalSets?: number;
+  lastUpdated?: string;
+  databaseSize?: string;
 }
 
 export default function Home() {
@@ -47,6 +64,10 @@ export default function Home() {
   const [showNameSuggestions, setShowNameSuggestions] = useState(false);
   const [showSetSuggestions, setShowSetSuggestions] = useState(false);
   
+  // New state for homepage
+  const [stats, setStats] = useState<Stats>({});
+  const [showAdminTools, setShowAdminTools] = useState(false);
+  
   const nameInputRef = useRef<HTMLInputElement>(null);
 
   // Load file status on component mount
@@ -76,6 +97,120 @@ export default function Home() {
   });
 
   const total = filteredCards.reduce((sum, card) => sum + (card.price ? parseFloat(card.price) : 0), 0);
+
+  // Feature cards for homepage
+  const featureCards: FeatureCard[] = [
+    {
+      title: "Card Browser",
+      description: "Browse and search through Magic: The Gathering cards from the comprehensive database",
+      icon: "🃏",
+      link: "/index-mtgjson",
+      status: "ready",
+      features: [
+        "Search by card name, set, or rarity",
+        "Filter by mana cost, colors, and type",
+        "Paginated browsing with high-resolution images",
+        "Database-driven for fast performance"
+      ]
+    },
+    {
+      title: "Investment Tracking",
+      description: "Track your MTG card collection and monitor investment performance over time",
+      icon: "📈",
+      link: "/portfolio",
+      status: "ready",
+      features: [
+        "Portfolio management with price tracking",
+        "Historical price data and trends",
+        "Investment performance analytics",
+        "CSV import for bulk collection uploads"
+      ]
+    },
+    {
+      title: "Card Search",
+      description: "Advanced search functionality with real-time filtering and suggestions",
+      icon: "🔍",
+      link: "/card-search",
+      status: "ready",
+      features: [
+        "Real-time search with autocomplete",
+        "Advanced filtering options",
+        "Integration with Scryfall API",
+        "Detailed card information display"
+      ]
+    },
+    {
+      title: "Admin Dashboard",
+      description: "Comprehensive administration tools for system management and data processing",
+      icon: "⚙️",
+      link: "/admin",
+      status: "admin",
+      features: [
+        "MTGJSON data management",
+        "System monitoring and metrics",
+        "Database administration",
+        "Security and performance tools"
+      ]
+    },
+    {
+      title: "Authentication",
+      description: "Secure user registration and login system with session management",
+      icon: "🔐",
+      link: "/auth/login",
+      status: "ready",
+      features: [
+        "Secure user registration",
+        "Email verification system",
+        "Password reset functionality",
+        "Session management"
+      ]
+    },
+    {
+      title: "Trading System",
+      description: "Track card trades and transactions with other players",
+      icon: "🔄",
+      link: "/trades",
+      status: "beta",
+      features: [
+        "Trade tracking and history",
+        "Transaction management",
+        "User-to-user interactions",
+        "Trade value calculations"
+      ]
+    }
+  ];
+
+  // Load database statistics
+  useEffect(() => {
+    async function loadStats() {
+      try {
+        // Get card count from filters API
+        const filtersRes = await fetch('/api/cards/filters');
+        if (filtersRes.ok) {
+          const filtersData = await filtersRes.json();
+          const setsCount = filtersData.data.sets?.length || 0;
+          
+          // Get total cards from a browse request
+          const browseRes = await fetch('/api/cards/browse?limit=1');
+          if (browseRes.ok) {
+            const browseData = await browseRes.json();
+            const totalCards = browseData.data.pagination?.totalCards || 0;
+            
+            setStats({
+              totalCards,
+              totalSets: setsCount,
+              lastUpdated: new Date().toLocaleDateString(),
+              databaseSize: "Local SQLite"
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Failed to load stats:', error);
+      }
+    }
+    
+    loadStats();
+  }, []);
 
   // Admin action handlers
   async function refreshFileStatus() {
@@ -473,81 +608,254 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen w-full flex flex-col items-center bg-gray-950 text-gray-100 px-4 py-8">
-      {/* Navigation to Enhanced Admin */}
-      <div className="w-full max-w-4xl mb-6 p-4 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-700 rounded-xl">
-        <div className="flex justify-between items-center">
-          <div>
-            <h2 className="text-lg font-semibold text-blue-400">Enhanced Admin Dashboard Available</h2>
-            <p className="text-sm text-gray-400 mt-1">
-              Access comprehensive system monitoring, security dashboard, and performance metrics
+    <main className="min-h-screen w-full flex flex-col bg-gray-950 text-gray-100">
+      {/* Hero Section */}
+      <section className="w-full bg-gradient-to-br from-blue-950 via-purple-950 to-gray-950 py-20 px-4">
+        <div className="max-w-6xl mx-auto text-center">
+          <div className="mb-8">
+            <div className="inline-flex items-center px-4 py-2 bg-blue-900/30 border border-blue-700 rounded-full text-blue-300 text-sm mb-6">
+              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+              System Online • Database Ready • API Active
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6">
+              MTG Investment Tracker
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Professional Magic: The Gathering card investment tracking with comprehensive database,
+              real-time pricing, and advanced portfolio analytics
             </p>
           </div>
-          <a
-            href="/admin"
-            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-lg transition-all duration-200 transform hover:scale-105 shadow-lg"
-          >
-            🚀 Open Enhanced Admin
-          </a>
+          
+          {/* Quick Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
+              <div className="text-3xl font-bold text-blue-400 mb-2">
+                {stats.totalCards?.toLocaleString() || "Loading..."}
+              </div>
+              <div className="text-gray-400">Total Cards</div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
+              <div className="text-3xl font-bold text-purple-400 mb-2">
+                {stats.totalSets || "Loading..."}
+              </div>
+              <div className="text-gray-400">Sets Available</div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
+              <div className="text-3xl font-bold text-green-400 mb-2">Real-Time</div>
+              <div className="text-gray-400">Price Updates</div>
+            </div>
+            <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
+              <div className="text-3xl font-bold text-orange-400 mb-2">
+                {stats.databaseSize || "Local"}
+              </div>
+              <div className="text-gray-400">Database</div>
+            </div>
+          </div>
+          
+          {/* Primary Actions */}
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link 
+              href="/index-mtgjson"
+              className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              🃏 Browse Cards
+            </Link>
+            <Link 
+              href="/portfolio"
+              className="px-8 py-4 bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              📈 Track Portfolio
+            </Link>
+            <Link 
+              href="/card-search"
+              className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center gap-2"
+            >
+              � Search Cards
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <DashboardCards cards={defaultDashboardCards} />
-      
-      <AdminToolsPanel
-        adminStatus={adminStatus}
-        adminLoading={adminLoading}
-        downloadProgress={downloadProgress}
-        downloadSpeed={downloadSpeed}
-        importProgress={importProgress}
-        importPhase={importPhase}
-        importRate={importRate}
-        importEta={importEta}
-        importProcessed={importProcessed}
-        importTotal={importTotal}
-        onDownloadMtgjson={handleDownloadMtgjson}
-        onImportMtgjson={handleImportMtgjson}
-        onDebugImportMtgjson={handleDebugImportMtgjson}
-        onDownloadPriceHistory={handleDownloadPriceHistory}
-        onDownloadImportLog={handleDownloadImportLog}
-        onRefreshFileStatus={refreshFileStatus}
-        onTestJsonValidity={testJsonValidity}
-        onClearLogs={clearLogs}
-        onClearImportLock={clearImportLock}
-      />
-      
-      <CSVUpload
-        onFileChange={handleFileChange}
-        cards={cards}
-        showNoPrice={showNoPrice}
-        setShowNoPrice={setShowNoPrice}
-        cardsNoPrice={cardsNoPrice}
-        total={total}
-        loading={loading}
-        progress={progress}
-      />
-      
-      {cards.length > 0 && (
-        <CardFilters
-          minPrice={minPrice}
-          maxPrice={maxPrice}
-          searchName={searchName}
-          searchSet={searchSet}
-          setMinPrice={setMinPrice}
-          setMaxPrice={setMaxPrice}
-          setSearchName={setSearchName}
-          setSearchSet={setSearchSet}
-          showNameSuggestions={showNameSuggestions}
-          setShowNameSuggestions={setShowNameSuggestions}
-          showSetSuggestions={showSetSuggestions}
-          setShowSetSuggestions={setShowSetSuggestions}
-          nameSuggestions={nameSuggestions}
-          setSuggestions={setSuggestions}
-          nameInputRef={nameInputRef}
-        />
-      )}
-      
-      <CardGrid cards={showNoPrice ? cardsNoPrice : filteredCards} showNoPrice={showNoPrice} />
+      {/* Features Section */}
+      <section className="w-full py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-100 mb-4">Platform Capabilities</h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Comprehensive tools for Magic: The Gathering collectors, investors, and players
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featureCards.map((feature, index) => (
+              <div key={feature.title} className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-8 hover:border-blue-500/50 transition-all duration-300 group">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="text-4xl mb-4">{feature.icon}</div>
+                  <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    feature.status === 'ready' ? 'bg-green-900/30 text-green-400 border border-green-500/30' :
+                    feature.status === 'beta' ? 'bg-yellow-900/30 text-yellow-400 border border-yellow-500/30' :
+                    'bg-blue-900/30 text-blue-400 border border-blue-500/30'
+                  }`}>
+                    {feature.status === 'ready' ? 'Ready' : feature.status === 'beta' ? 'Beta' : 'Admin'}
+                  </div>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-100 mb-3 group-hover:text-blue-400 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-400 mb-6">{feature.description}</p>
+                <ul className="space-y-2 mb-8">
+                  {feature.features.map((feat, i) => (
+                    <li key={i} className="flex items-center text-gray-300 text-sm">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                      {feat}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={feature.link}
+                  className="inline-flex items-center px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-100 rounded-lg transition-all duration-200 group-hover:bg-blue-600/20 group-hover:text-blue-400 font-medium"
+                >
+                  Explore Feature
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Tools Section - Collapsible */}
+      <section className="w-full py-12 px-4 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-100 mb-2">Development Tools</h2>
+              <p className="text-gray-400">Admin tools, CSV upload, and system management</p>
+            </div>
+            <button
+              onClick={() => setShowAdminTools(!showAdminTools)}
+              className="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-gray-100 rounded-lg transition-all duration-200 flex items-center gap-2"
+            >
+              {showAdminTools ? 'Hide Tools' : 'Show Tools'}
+              <svg 
+                className={`w-4 h-4 transition-transform ${showAdminTools ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          </div>
+          
+          {showAdminTools && (
+            <div className="space-y-8 animate-in slide-in-from-top duration-300">
+              <AdminToolsPanel
+                adminStatus={adminStatus}
+                adminLoading={adminLoading}
+                downloadProgress={downloadProgress}
+                downloadSpeed={downloadSpeed}
+                importProgress={importProgress}
+                importPhase={importPhase}
+                importRate={importRate}
+                importEta={importEta}
+                importProcessed={importProcessed}
+                importTotal={importTotal}
+                onDownloadMtgjson={handleDownloadMtgjson}
+                onImportMtgjson={handleImportMtgjson}
+                onDebugImportMtgjson={handleDebugImportMtgjson}
+                onDownloadPriceHistory={handleDownloadPriceHistory}
+                onDownloadImportLog={handleDownloadImportLog}
+                onRefreshFileStatus={refreshFileStatus}
+                onTestJsonValidity={testJsonValidity}
+                onClearLogs={clearLogs}
+                onClearImportLock={clearImportLock}
+              />
+              
+              <CSVUpload
+                onFileChange={handleFileChange}
+                cards={cards}
+                showNoPrice={showNoPrice}
+                setShowNoPrice={setShowNoPrice}
+                cardsNoPrice={cardsNoPrice}
+                total={total}
+                loading={loading}
+                progress={progress}
+              />
+              
+              {cards.length > 0 && (
+                <>
+                  <CardFilters
+                    minPrice={minPrice}
+                    maxPrice={maxPrice}
+                    searchName={searchName}
+                    searchSet={searchSet}
+                    setMinPrice={setMinPrice}
+                    setMaxPrice={setMaxPrice}
+                    setSearchName={setSearchName}
+                    setSearchSet={setSearchSet}
+                    showNameSuggestions={showNameSuggestions}
+                    setShowNameSuggestions={setShowNameSuggestions}
+                    showSetSuggestions={showSetSuggestions}
+                    setShowSetSuggestions={setShowSetSuggestions}
+                    nameSuggestions={nameSuggestions}
+                    setSuggestions={setSuggestions}
+                    nameInputRef={nameInputRef}
+                  />
+                  <CardGrid cards={showNoPrice ? cardsNoPrice : filteredCards} showNoPrice={showNoPrice} />
+                </>
+              )}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="w-full py-12 px-4 border-t border-gray-800 bg-gray-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold text-gray-100 mb-4">MTG Investment Tracker</h3>
+              <p className="text-gray-400 mb-4">
+                Professional-grade Magic: The Gathering investment tracking platform built with modern web technologies.
+                Features comprehensive card database, real-time pricing, and advanced portfolio analytics.
+              </p>
+              <div className="flex items-center text-gray-500 text-sm">
+                <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                Last updated: {stats.lastUpdated || new Date().toLocaleDateString()}
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-200 mb-4">Features</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Card Database Browser</li>
+                <li>Investment Portfolio</li>
+                <li>Advanced Search</li>
+                <li>Price History</li>
+                <li>Trading System</li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="text-lg font-semibold text-gray-200 mb-4">Technology</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Next.js 13+</li>
+                <li>TypeScript</li>
+                <li>SQLite Database</li>
+                <li>MTGJSON Integration</li>
+                <li>Scryfall API</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500">
+            <p>&copy; 2025 MTG Investment Tracker. Built for collectors, investors, and players.</p>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
