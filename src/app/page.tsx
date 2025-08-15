@@ -66,6 +66,7 @@ export default function Home() {
   
   // New state for homepage
   const [stats, setStats] = useState<Stats>({});
+  const [statsLoaded, setStatsLoaded] = useState(false);
   const [showAdminTools, setShowAdminTools] = useState(false);
   
   const nameInputRef = useRef<HTMLInputElement>(null);
@@ -78,15 +79,16 @@ export default function Home() {
   // Computed values
   const cardsNoPrice = cards.filter(card => !card.price);
   const nameSuggestions = searchName ? 
-    [...new Set(cards.map(c => c.name))].filter(name => 
+    [...new Set(cards.filter(card => card && card.name).map(c => c.name))].filter(name => 
       name.toLowerCase().includes(searchName.toLowerCase())
     ).slice(0, 10) : [];
   const setSuggestions = searchSet ? 
-    [...new Set(cards.map(c => c.set_name).filter(Boolean) as string[])].filter(setName => 
+    [...new Set(cards.filter(card => card && card.set_name).map(c => c.set_name).filter(Boolean) as string[])].filter(setName => 
       setName.toLowerCase().includes(searchSet.toLowerCase())
     ).slice(0, 10) : [];
 
   const filteredCards = cards.filter(card => {
+    if (!card || !card.name) return false;
     if (showNoPrice) return !card.price;
     const price = card.price ? parseFloat(card.price) : 0;
     if (minPrice && price < parseFloat(minPrice)) return false;
@@ -202,10 +204,12 @@ export default function Home() {
               lastUpdated: new Date().toLocaleDateString(),
               databaseSize: "Local SQLite"
             });
+            setStatsLoaded(true);
           }
         }
       } catch (error) {
         console.error('Failed to load stats:', error);
+        setStatsLoaded(true); // Set to true even on error to avoid infinite loading
       }
     }
     
@@ -630,13 +634,13 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="text-3xl font-bold text-blue-400 mb-2">
-                {stats.totalCards?.toLocaleString() || "Loading..."}
+                {statsLoaded ? (stats.totalCards?.toLocaleString() || "0") : "—"}
               </div>
               <div className="text-gray-400">Total Cards</div>
             </div>
             <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="text-3xl font-bold text-purple-400 mb-2">
-                {stats.totalSets || "Loading..."}
+                {statsLoaded ? (stats.totalSets || "0") : "—"}
               </div>
               <div className="text-gray-400">Sets Available</div>
             </div>
@@ -646,7 +650,7 @@ export default function Home() {
             </div>
             <div className="bg-gray-900/50 backdrop-blur border border-gray-700 rounded-xl p-6">
               <div className="text-3xl font-bold text-orange-400 mb-2">
-                {stats.databaseSize || "Local"}
+                {statsLoaded ? (stats.databaseSize || "Local") : "—"}
               </div>
               <div className="text-gray-400">Database</div>
             </div>
@@ -824,7 +828,7 @@ export default function Home() {
               </p>
               <div className="flex items-center text-gray-500 text-sm">
                 <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
-                Last updated: {stats.lastUpdated || new Date().toLocaleDateString()}
+                Last updated: {statsLoaded ? (stats.lastUpdated || new Date().toLocaleDateString()) : new Date().toLocaleDateString()}
               </div>
             </div>
             

@@ -84,10 +84,12 @@ export default function CardBrowserPage() {
         const res = await fetch('/api/cards/random?count=20&hasImage=true');
         if (res.ok) {
           const data = await res.json();
-          setRandomCards(data.data.cards);
+          const validCards = (data.data.cards || []).filter((card: any) => card && card.uuid && card.name);
+          setRandomCards(validCards);
         }
       } catch (err) {
         console.error('Failed to load random cards:', err);
+        setRandomCards([]); // Ensure empty array on error
       }
     }
     loadRandomCards();
@@ -109,8 +111,9 @@ export default function CardBrowserPage() {
         const searchRes = await fetch(`/api/cards/search?name=${encodeURIComponent(nameSearch.trim())}&limit=24`);
         if (searchRes.ok) {
           const searchData = await searchRes.json();
-          setCards(searchData.data || []);
-          setTotalCards(searchData.data?.length || 0);
+          const validCards = (searchData.data || []).filter((card: any) => card && card.uuid && card.name);
+          setCards(validCards);
+          setTotalCards(validCards.length);
           setTotalPages(1);
           setCurrentPage(1);
         } else {
@@ -127,7 +130,8 @@ export default function CardBrowserPage() {
         const browseRes = await fetch(`/api/cards/browse?${params}`);
         if (browseRes.ok) {
           const browseData = await browseRes.json();
-          setCards(browseData.data.cards);
+          const validCards = (browseData.data.cards || []).filter((card: any) => card && card.uuid && card.name);
+          setCards(validCards);
           setTotalCards(browseData.data.pagination.totalCards);
           setTotalPages(browseData.data.pagination.totalPages);
           setCurrentPage(browseData.data.pagination.page);
@@ -327,7 +331,7 @@ export default function CardBrowserPage() {
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {displayCards.map((card) => (
+          {displayCards.filter(card => card && card.uuid && card.name).map((card) => (
             <div key={card.uuid} className="bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
               {card.image_uris?.small && (
                 <img
