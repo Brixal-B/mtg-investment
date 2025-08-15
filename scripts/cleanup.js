@@ -5,7 +5,7 @@
  * Usage: node cleanup.js [options]
  */
 
-const CleanupAgent = require('./lib/cleanup-agent');
+const CleanupAgent = require('../lib/cleanup-agent');
 const path = require('path');
 
 // Parse command line arguments

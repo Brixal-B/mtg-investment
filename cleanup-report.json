@@ -1,0 +1,2127 @@
+{
+  "timestamp": "2025-08-15T22:34:37.994Z",
+  "stats": {
+    "filesRemoved": 6,
+    "directoriesRemoved": 2,
+    "bytesFreed": 55730,
+    "errors": 415
+  },
+  "summary": "Cleanup completed: 6 files and 2 directories removed, 54.42 KB freed",
+  "log": [
+    {
+      "timestamp": "2025-08-15T22:34:37.495Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\unit\\validation.test.ts"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.495Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\unit\\react-testing-setup.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.496Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\unit\\database.test.ts"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.496Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\unit\\api-cards-search.test.ts"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.496Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\integration\\database.integration.test.ts"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.496Z",
+      "level": "success",
+      "message": "Removed file (Test files): src\\test\\integration\\csv-collection-upload-outcomes.test.tsx"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.536Z",
+      "level": "success",
+      "message": "Removed directory (Test files): src\\test"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.536Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\src\\test\\unit: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\src\\test\\unit'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.537Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\src\\test\\setup.ts: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\src\\test\\setup.ts'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.537Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\src\\test\\integration: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\src\\test\\integration'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.538Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\src\\test\\integration\\test-server.ts: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\src\\test\\integration\\test-server.ts'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.714Z",
+      "level": "success",
+      "message": "Removed directory (Test files): coverage"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.714Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\types: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\types'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.715Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\sorter.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\sorter.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.715Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\sort-arrow-sprite.png: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\sort-arrow-sprite.png'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.715Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\prettify.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\prettify.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.716Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\prettify.css: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\prettify.css'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.716Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.716Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov.info: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov.info'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.716Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.717Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.717Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\favicon.png: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\favicon.png'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.717Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\coverage-summary.json: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\coverage-summary.json'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.718Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.718Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\block-navigation.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\block-navigation.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.718Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\base.css: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\base.css'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.719Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.719Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\types\\trading.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\types\\trading.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.719Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\types\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\types\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.719Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\validation.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\validation.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.720Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\security-validation.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\security-validation.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.720Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\security-monitor.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\security-monitor.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.721Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\performance-monitor.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\performance-monitor.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.721Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.721Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\import-optimizer.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\import-optimizer.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.722Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\filesystem.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\filesystem.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.722Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\errors.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\errors.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.722Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\env-config.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\env-config.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.722Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\download-manager.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\download-manager.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.723Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\design-tokens.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\design-tokens.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.723Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\database.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\database.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.724Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\config.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\config.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.724Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\cache-manager.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\cache-manager.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.724Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\auth-service.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\auth-service.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.725Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\auth-middleware.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\auth-middleware.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.725Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lib\\api-utils.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lib\\api-utils.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.725Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.726Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\sorter.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\sorter.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.726Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\sort-arrow-sprite.png: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\sort-arrow-sprite.png'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.727Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\prettify.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\prettify.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.727Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\prettify.css: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\prettify.css'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.728Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.728Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.728Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\favicon.png: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\favicon.png'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.728Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.729Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\block-navigation.js: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\block-navigation.js'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.729Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\base.css: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\base.css'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.729Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.730Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types\\trading.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types\\trading.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.730Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\types\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.730Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\validation.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\validation.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.731Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\security-validation.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\security-validation.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.731Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\security-monitor.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\security-monitor.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.731Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\performance-monitor.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\performance-monitor.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.732Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.732Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\import-optimizer.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\import-optimizer.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.732Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\filesystem.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\filesystem.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.733Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\errors.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\errors.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.733Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\env-config.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\env-config.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.733Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\download-manager.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\download-manager.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.734Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\design-tokens.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\design-tokens.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.734Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\database.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\database.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.734Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\config.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\config.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.735Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\cache-manager.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\cache-manager.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.735Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\auth-service.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\auth-service.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.736Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\auth-middleware.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\auth-middleware.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.736Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\api-utils.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\lib\\api-utils.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.737Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\WishlistManager.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\WishlistManager.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.737Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\VirtualizedList.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\VirtualizedList.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.738Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.738Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\TradingPage.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\TradingPage.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.738Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.739Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\SystemMetricsPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\SystemMetricsPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.739Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\SecurityDashboard.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\SecurityDashboard.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.740Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ResetPasswordForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ResetPasswordForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.740Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\RegistrationForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\RegistrationForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.740Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\QuickActions.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\QuickActions.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.741Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ProgressBar.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ProgressBar.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.741Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.741Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\PerformanceMonitor.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\PerformanceMonitor.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.742Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\MagicPlayerNav.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\MagicPlayerNav.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.742Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\LoginForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\LoginForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.742Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.743Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ImageOptimizer.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ImageOptimizer.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.743Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ForgotPasswordForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ForgotPasswordForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.743Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\FileStatusPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\FileStatusPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.743Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\EmailVerificationPage.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\EmailVerificationPage.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.743Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\DeckBuilder.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\DeckBuilder.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.744Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\DashboardCards.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\DashboardCards.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.744Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CSVUpload.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CSVUpload.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.744Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CollectionPortfolioDashboard.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CollectionPortfolioDashboard.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.745Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CardGrid.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CardGrid.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.745Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CardFilters.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\CardFilters.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.745Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AdminToolsPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AdminToolsPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.746Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AdminActionButtons.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AdminActionButtons.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.746Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AddCardModal.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\AddCardModal.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.746Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\Toast.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\Toast.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.746Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\SkeletonLoader.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\SkeletonLoader.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.747Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\LoadingSpinner.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\LoadingSpinner.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.747Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\ui\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.747Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\UserSearch.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\UserSearch.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.748Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\TradeOfferSection.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\TradeOfferSection.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.748Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\TradeControls.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\TradeControls.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.748Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.748Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\CardSearchModal.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\trading\\CardSearchModal.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.749Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\TopHoldings.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\TopHoldings.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.749Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\PortfolioOverview.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\PortfolioOverview.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.749Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.750Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\DiversificationCharts.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\DiversificationCharts.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.750Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\CSVCollectionUpload.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\components\\portfolio\\CSVCollectionUpload.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.750Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.751Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.751Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.751Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.752Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.752Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.752Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.752Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.753Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\layout.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\layout.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.753Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.753Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.754Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.754Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.754Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.755Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.755Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.756Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.756Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.756Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.757Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\wishlist\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.757Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.757Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\verify-email\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.758Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.758Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.758Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.759Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.759Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\trade\\[id]\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.760Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.760Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\reset-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.761Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.761Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\register\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.762Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.762Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.762Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.763Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\login\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.763Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.763Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\index-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.763Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.764Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\forgot-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.764Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.764Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\deck-builder\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.765Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.765Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\dashboard\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.766Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.766Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components\\DropdownNav.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\components\\DropdownNav.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.767Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.767Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\card-search\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.767Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.767Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.768Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.768Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.768Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.769Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.769Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.769Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.769Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.770Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.770Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.770Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\users\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.771Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.771Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.771Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.772Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.772Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\trades\\cards\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.772Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.773Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\test-json\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.773Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.774Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.774Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.774Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.775Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\price-history\\download\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.775Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.775Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.776Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.776Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\mtgjson-data\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.776Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.777Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\database\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.777Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.777Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.777Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\cards\\search\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.778Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.778Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.778Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.778Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.779Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.779Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.779Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.779Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.780Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\verify-email\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.780Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.781Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\reset-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.781Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.782Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\register\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.782Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.783Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\me\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.783Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.783Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\logout\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.783Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.784Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\login\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.784Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.784Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\auth\\forgot-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.784Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.785Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.785Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.785Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.786Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.786Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.786Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.787Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.787Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.787Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.788Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\test-mtgjson-connection\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.788Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.788Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\system-metrics\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.789Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.789Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\security-dashboard\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.789Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.790Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\performance-monitor\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.790Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.790Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.791Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.791Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\import-log\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.791Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.792Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\download-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.792Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.793Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\clear-import-lock\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.793Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.794Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\api\\admin\\check-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.794Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.794Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\lcov-report\\app\\admin\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.794Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\WishlistManager.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\WishlistManager.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.795Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\VirtualizedList.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\VirtualizedList.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.795Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ui: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ui'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.795Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\TradingPage.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\TradingPage.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.796Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.796Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\SystemMetricsPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\SystemMetricsPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.796Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\SecurityDashboard.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\SecurityDashboard.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.796Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ResetPasswordForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ResetPasswordForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.797Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\RegistrationForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\RegistrationForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.797Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\QuickActions.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\QuickActions.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.797Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ProgressBar.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ProgressBar.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.797Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.798Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\PerformanceMonitor.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\PerformanceMonitor.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.798Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\MagicPlayerNav.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\MagicPlayerNav.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.798Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\LoginForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\LoginForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.798Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.799Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ImageOptimizer.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ImageOptimizer.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.799Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ForgotPasswordForm.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ForgotPasswordForm.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.799Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\FileStatusPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\FileStatusPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.799Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\EmailVerificationPage.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\EmailVerificationPage.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.800Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\DeckBuilder.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\DeckBuilder.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.800Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\DashboardCards.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\DashboardCards.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.800Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\CSVUpload.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\CSVUpload.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.801Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\CollectionPortfolioDashboard.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\CollectionPortfolioDashboard.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.801Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\CardGrid.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\CardGrid.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.801Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\CardFilters.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\CardFilters.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.801Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\AdminToolsPanel.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\AdminToolsPanel.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.802Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\AdminActionButtons.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\AdminActionButtons.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.802Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\AddCardModal.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\AddCardModal.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.802Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ui\\Toast.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ui\\Toast.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.802Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ui\\SkeletonLoader.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ui\\SkeletonLoader.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.803Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ui\\LoadingSpinner.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ui\\LoadingSpinner.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.803Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\ui\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\ui\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.803Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading\\UserSearch.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading\\UserSearch.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.803Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading\\TradeOfferSection.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading\\TradeOfferSection.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.804Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading\\TradeControls.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading\\TradeControls.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.804Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.805Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\trading\\CardSearchModal.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\trading\\CardSearchModal.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.805Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\TopHoldings.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\TopHoldings.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.805Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\PortfolioOverview.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\PortfolioOverview.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.806Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.806Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\DiversificationCharts.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\DiversificationCharts.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.806Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\CSVCollectionUpload.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\components\\portfolio\\CSVCollectionUpload.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.807Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\wishlist: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\wishlist'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.807Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\verify-email: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\verify-email'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.807Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.807Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\reset-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\reset-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.808Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\register: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\register'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.808Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.808Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.808Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\login: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\login'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.809Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\layout.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\layout.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.809Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.809Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.809Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.810Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.810Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\dashboard: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\dashboard'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.810Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\components: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\components'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.811Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\card-search: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\card-search'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.811Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.812Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\admin: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\admin'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.812Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\wishlist\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\wishlist\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.813Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\wishlist\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\wishlist\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.813Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\verify-email\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\verify-email\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.813Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\verify-email\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\verify-email\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.814Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.814Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.814Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.815Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.815Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\trade\\[id]\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.815Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\reset-password\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\reset-password\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.816Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\reset-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\reset-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.816Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\register\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\register\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.816Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\register\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\register\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.816Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\portfolio\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\portfolio\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.817Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.817Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\login\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\login\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.817Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\login\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\login\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.817Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.818Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\index-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.818Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.818Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\forgot-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.818Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.819Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\deck-builder\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.819Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\dashboard\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\dashboard\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.819Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\dashboard\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\dashboard\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.819Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\components\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\components\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.820Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\components\\DropdownNav.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\components\\DropdownNav.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.820Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\card-search\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\card-search\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.820Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\card-search\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\card-search\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.821Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\users: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\users'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.821Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.821Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.822Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.822Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.822Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.823Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\database: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\database'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.823Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.823Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.824Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.824Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\users\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\users\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.824Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\users\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\users\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.824Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.825Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.825Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.825Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.826Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\trades\\cards\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.826Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.826Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\test-json\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.826Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.827Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.827Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.827Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.828Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\price-history\\download\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.828Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.828Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\portfolio\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.829Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.829Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\mtgjson-data\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.829Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\database\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\database\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.829Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\database\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\database\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.830Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.830Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.830Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\cards\\search\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.831Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.831Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.831Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.831Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.832Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.832Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.832Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.832Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.832Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\verify-email\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.833Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.833Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\reset-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.833Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.833Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\register\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.834Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.834Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\me\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.834Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.834Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\logout\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.835Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.835Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\login\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.835Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.836Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\auth\\forgot-password\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.836Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.837Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.837Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.838Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.838Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.838Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.839Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.839Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.839Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.840Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.840Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\test-mtgjson-connection\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.840Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.841Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\system-metrics\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.841Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.841Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\security-dashboard\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.842Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.842Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\performance-monitor\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.843Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.843Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.844Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.844Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\import-log\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.844Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.844Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\download-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.845Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.845Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\clear-import-lock\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.846Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson\\route.ts.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson\\route.ts.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.846Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\api\\admin\\check-mtgjson\\index.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.846Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\admin\\page.tsx.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\admin\\page.tsx.html'"
+    },
+    {
+      "timestamp": "2025-08-15T22:34:37.847Z",
+      "level": "error",
+      "message": "Error removing C:\\Projects\\mtg-investment\\coverage\\app\\admin\\index.html: ENOENT: no such file or directory, stat 'C:\\Projects\\mtg-investment\\coverage\\app\\admin\\index.html'"
+    }
+  ]
+}

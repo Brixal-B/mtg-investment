@@ -3,6 +3,9 @@ module.exports = {
   setupFilesAfterEnv: [
     "<rootDir>/src/test/setup.ts"
   ],
+  testEnvironmentOptions: {
+    customExportConditions: [""],
+  },
   testMatch: [
     "<rootDir>/src/**/__tests__/**/*.(ts|tsx|js|jsx)",
     "<rootDir>/src/**/*.(test|spec).(ts|tsx|js|jsx)",
@@ -33,7 +36,16 @@ module.exports = {
     "^@/(.*)$": "<rootDir>/src/$1"
   },
   transform: {
-    "^.+\\.(ts|tsx)$": ["@swc/jest"],
+    "^.+\\.(ts|tsx)$": ["@swc/jest", {
+      jsc: {
+        parser: {
+          syntax: "typescript",
+          tsx: true,
+          decorators: false,
+          dynamicImport: false
+        }
+      }
+    }],
     "^.+\\.(js|jsx)$": ["@swc/jest"]
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],

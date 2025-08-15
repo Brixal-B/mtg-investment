@@ -6,7 +6,8 @@ import TopHoldings from '@/components/portfolio/TopHoldings';
 import DiversificationCharts from '@/components/portfolio/DiversificationCharts';
 import LoadingSpinner from '@/components/ui/LoadingSpinner';
 import AddCardModal from '@/components/AddCardModal';
-import { BarChart3, TrendingUp, PieChart, Plus } from 'lucide-react';
+import CSVCollectionUpload from '@/components/portfolio/CSVCollectionUpload';
+import { BarChart3, TrendingUp, PieChart, Plus, Upload } from 'lucide-react';
 
 interface CollectionPortfolioDashboardProps {
   userId?: string;
@@ -115,6 +116,7 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'overview' | 'holdings' | 'diversification'>('overview');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showCSVUpload, setShowCSVUpload] = useState(false);
 
   const fetchPortfolio = async () => {
     try {
@@ -181,12 +183,44 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
   if (!portfolio) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="text-gray-600 text-lg font-medium mb-2">No portfolio data available</div>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg">
-            Import Collection
-          </button>
+        <div className="text-center max-w-md">
+          <div className="text-gray-600 text-lg font-medium mb-4">No portfolio data available</div>
+          <p className="text-gray-500 text-sm mb-6">
+            Start building your collection by importing cards from a CSV file or adding cards manually.
+          </p>
+          <div className="space-y-3">
+            <button 
+              onClick={() => setShowCSVUpload(true)}
+              className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg flex items-center justify-center"
+            >
+              <Upload size={20} className="mr-2" />
+              Import Collection from CSV
+            </button>
+            <button 
+              onClick={() => setShowAddModal(true)}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center justify-center"
+            >
+              <Plus size={20} className="mr-2" />
+              Add Cards Manually
+            </button>
+          </div>
         </div>
+        
+        <CSVCollectionUpload
+          userId={userId}
+          isOpen={showCSVUpload}
+          onClose={() => setShowCSVUpload(false)}
+          onUploadComplete={() => {
+            setShowCSVUpload(false);
+            fetchPortfolio();
+          }}
+        />
+        
+        <AddCardModal
+          isOpen={showAddModal}
+          onClose={() => setShowAddModal(false)}
+          onAdd={handleAddCards}
+        />
       </div>
     );
   }
@@ -199,13 +233,22 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Collection Portfolio</h1>
             <p className="text-gray-600">Track your Magic collection's performance and value</p>
           </div>
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            <Plus size={20} className="mr-2" />
-            Add Cards
-          </button>
+          <div className="flex space-x-3">
+            <button
+              onClick={() => setShowCSVUpload(true)}
+              className="flex items-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              <Upload size={20} className="mr-2" />
+              Import CSV
+            </button>
+            <button
+              onClick={() => setShowAddModal(true)}
+              className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus size={20} className="mr-2" />
+              Add Cards
+            </button>
+          </div>
         </div>
 
         <div className="mb-8">
@@ -242,6 +285,17 @@ const CollectionPortfolioDashboard: React.FC<CollectionPortfolioDashboardProps> 
         isOpen={showAddModal}
         onClose={() => setShowAddModal(false)}
         onAdd={handleAddCards}
+      />
+      
+      <CSVCollectionUpload
+        userId={userId}
+        isOpen={showCSVUpload}
+        onClose={() => setShowCSVUpload(false)}
+        onUploadComplete={() => {
+          setShowCSVUpload(false);
+          // Refresh portfolio data after successful upload
+          fetchPortfolio();
+        }}
       />
     </div>
   );
