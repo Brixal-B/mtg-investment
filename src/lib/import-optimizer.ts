@@ -20,7 +20,7 @@ export {
 export const getLazyComponents = () => ({
   VirtualizedList: () => import('../components/VirtualizedList'),
   ImageOptimizer: () => import('../components/ImageOptimizer'),
-  ChartComponent: () => import('../components/ChartComponent')
+  DiversificationCharts: () => import('../components/portfolio/DiversificationCharts')
 });
 
 // Performance utilities

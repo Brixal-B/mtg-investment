@@ -266,3 +266,45 @@ export async function processJsonFile<T>(
     );
   }
 }
+
+/**
+ * Format currency value
+ */
+export function formatCurrency(amount: number, currency: string = 'USD'): string {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(amount);
+}
+
+/**
+ * Calculate price change percentage
+ */
+export function calculatePriceChange(oldPrice: number, newPrice: number): {
+  amount: number;
+  percentage: number;
+} {
+  const amount = newPrice - oldPrice;
+  const percentage = oldPrice > 0 ? (amount / oldPrice) * 100 : 0;
+  
+  return {
+    amount: Math.round(amount * 100) / 100,
+    percentage: Math.round(percentage * 100) / 100,
+  };
+}
+
+/**
+ * Validate card data structure
+ */
+export function validateCardData(card: any): boolean {
+  return (
+    card &&
+    typeof card === 'object' &&
+    typeof card.name === 'string' &&
+    card.name.length > 0 &&
+    typeof card.uuid === 'string' &&
+    card.uuid.length > 0
+  );
+}

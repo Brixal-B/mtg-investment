@@ -1,4 +1,4 @@
-# .dockerignore - Optimize Docker build
+`# .dockerignore - Optimize Docker build
 node_modules
 npm-debug.log
 .next
