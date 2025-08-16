@@ -10,7 +10,7 @@ class MemoryCache {
   set(key: string, data: unknown, ttlMs: number = 300000): void { // 5 min default
     if (this.cache.size >= this.maxSize) {
       const firstKey = this.cache.keys().next().value;
-      if (firstKey !== undefined) {
+      if (firstKey) {
         this.cache.delete(firstKey);
       }
     }

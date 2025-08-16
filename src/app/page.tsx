@@ -281,7 +281,7 @@ export default function Home() {
       const checkRes = await fetch("/api/admin/check-mtgjson");
       if (checkRes.ok) {
         const checkText = await checkRes.text();
-        let check: any = {};
+        let check: { exists?: boolean; size?: number } = {};
         try {
           check = checkText && checkText.trim() ? JSON.parse(checkText) : {};
         } catch (parseError) {
@@ -302,7 +302,7 @@ export default function Home() {
               return;
             }
           }
-          setAdminStatus(`AllPrices.json already downloaded (${(check.size/1024/1024).toFixed(1)} MB).`);
+          setAdminStatus(`AllPrices.json already downloaded (${check.size ? (check.size/1024/1024).toFixed(1) + ' MB' : 'unknown size'}).`);
           setAdminLoading(false);
           return;
         }

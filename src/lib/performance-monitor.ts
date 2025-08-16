@@ -27,7 +27,8 @@ class PerformanceMonitor {
     try {
       const observer = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          console.log(`Performance metric: ${entry.name} = ${entry.duration || 'N/A'}`);
+          const value = 'value' in entry ? entry.value : entry.duration;
+          console.log(`Performance metric: ${entry.name} = ${value}`);
         });
       });
       

@@ -16,7 +16,7 @@ interface CardFiltersProps {
   setShowSetSuggestions: (show: boolean) => void;
   nameSuggestions: string[];
   setSuggestions: string[];
-  nameInputRef: React.RefObject<HTMLInputElement | null>;
+  nameInputRef: React.RefObject<HTMLInputElement>;
 }
 
 export default function CardFilters({

@@ -11,15 +11,16 @@ export type {
 
 // Re-export commonly used utilities
 export {
-  fetchWithTimeout,
-  downloadWithProgress,
-  validateFileUpload
+  formatCurrency,
+  calculatePriceChange,
+  validateCardData
 } from './api-utils';
 
 // Lazy-loaded heavy dependencies
 export const getLazyComponents = () => ({
   VirtualizedList: () => import('../components/VirtualizedList'),
-  ImageOptimizer: () => import('../components/ImageOptimizer')
+  ImageOptimizer: () => import('../components/ImageOptimizer'),
+  ChartComponent: () => import('../components/ChartComponent')
 });
 
 // Performance utilities

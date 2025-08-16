@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     const db = new Database(dbPath);
     
     try {
-      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(payload.userId);
+      const user = db.prepare('SELECT * FROM users WHERE id = ?').get(payload.userId) as any;
       
       if (!user) {
         return NextResponse.json(
