@@ -64,7 +64,7 @@ export function validateInput(data: any, schema: ValidationSchema): ValidationRe
         continue;
       }
       if (rule.maxLength && value.length > rule.maxLength) {
-        errors[field] = `${field} must be no more than ${rule.maxLength} characters`;
+        errors[field] = `${field} must be at most ${rule.maxLength} characters`;
         continue;
       }
     }
@@ -198,36 +198,29 @@ export const commonSchemas = {
 };
 
 /**
- * SQL injection prevention
+ * SQL injection prevention - removes dangerous SQL patterns
  */
 export function sanitizeSQL(input: string): string {
-  return input.replace(/[';\x00\x08\x09\x1a\n\r"\\%]/g, char => {
-    switch (char) {
-      case "'":
-        return "''";
-      case '"':
-        return '""';
-      case '\\':
-        return '\\\\';
-      case '%':
-        return '\\%';
-      default:
-        return '';
-    }
-  });
+  // Remove dangerous SQL keywords and patterns
+  return input
+    .replace(/('|;|--|\/\*|\*\/)/g, '') // Remove quotes, semicolons, comments
+    .replace(/\b(DROP|DELETE|UPDATE|INSERT|ALTER|CREATE|EXEC|EXECUTE|UNION|SELECT)\s+/gi, '') // Remove dangerous SQL keywords
+    .replace(/\bOR\s+\w*\s*=\s*\w*/gi, '') // Remove OR conditions like "OR '1'='1"
+    .replace(/\bAND\s+\w*\s*=\s*\w*/gi, '') // Remove AND conditions
+    .trim();
 }
 
 /**
- * XSS prevention
+ * XSS prevention - removes HTML tags and content completely
  */
 export function sanitizeHTML(input: string): string {
+  // Remove all HTML tags and their content, leaving only plain text
   return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;');
+    .replace(/<script[^>]*>.*?<\/script>/gi, '') // Remove script tags and content
+    .replace(/<style[^>]*>.*?<\/style>/gi, '') // Remove style tags and content
+    .replace(/<[^>]+>/g, '') // Remove all other HTML tags
+    .replace(/&[a-zA-Z0-9#]+;/g, '') // Remove HTML entities
+    .trim();
 }
 
 export default {

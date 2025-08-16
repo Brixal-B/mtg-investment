@@ -128,6 +128,11 @@ export default function LoginForm({ onSuccess, redirectTo = '/' }: LoginFormProp
           
           <div className="text-center">
             <div className="text-sm text-gray-600">
+              <a href="/forgot-password" className="font-medium text-blue-600 hover:text-blue-500">
+                Forgot your password?
+              </a>
+            </div>
+            <div className="text-sm text-gray-600 mt-2">
               Demo credentials:
             </div>
             <div className="text-xs text-gray-500 mt-1">

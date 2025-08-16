@@ -13,6 +13,7 @@ import { PATHS } from './config';
 // Database configuration
 export const DATABASE_CONFIG = {
   development: path.join(PATHS.DATA_DIR, 'mtg-investment.db'),
+  test: process.env.DATABASE_URL === ':memory:' ? ':memory:' : path.join(PATHS.DATA_DIR, 'test.db'),
   production: process.env.DATABASE_URL || path.join(PATHS.DATA_DIR, 'mtg-investment.db'),
   options: {
     // SQLite specific options
@@ -31,6 +32,7 @@ class DatabasePool {
   private static instance: DatabasePool;
   private db: Database | null = null;
   private initialized = false;
+  private initializationPromise: Promise<void> | null = null;
 
   static getInstance(): DatabasePool {
     if (!DatabasePool.instance) {
@@ -41,13 +43,31 @@ class DatabasePool {
 
   async initialize(): Promise<void> {
     if (this.initialized) return;
+    if (this.initializationPromise) return this.initializationPromise;
 
-    const dbPath = DATABASE_CONFIG.development;
+    this.initializationPromise = this._doInitialize();
+    await this.initializationPromise;
+  }
+
+  private async _doInitialize(): Promise<void> {
+    // Determine which database configuration to use based on environment
+    const env = process.env.NODE_ENV || 'development';
+    let dbPath: string;
     
-    // Ensure data directory exists
-    const dataDir = path.dirname(dbPath);
-    if (!fs.existsSync(dataDir)) {
-      fs.mkdirSync(dataDir, { recursive: true });
+    if (env === 'test') {
+      dbPath = DATABASE_CONFIG.test;
+    } else if (env === 'production') {
+      dbPath = DATABASE_CONFIG.production;
+    } else {
+      dbPath = DATABASE_CONFIG.development;
+    }
+    
+    // For non-memory databases, ensure data directory exists
+    if (dbPath !== ':memory:') {
+      const dataDir = path.dirname(dbPath);
+      if (!fs.existsSync(dataDir)) {
+        fs.mkdirSync(dataDir, { recursive: true });
+      }
     }
 
     this.db = new Database(dbPath);
@@ -56,7 +76,7 @@ class DatabasePool {
     await this.executePragmas();
     
     this.initialized = true;
-    console.log(`✅ Database initialized: ${dbPath}`);
+    console.log(`✅ Database initialized (${env}): ${dbPath}`);
   }
 
   private async executePragmas(): Promise<void> {

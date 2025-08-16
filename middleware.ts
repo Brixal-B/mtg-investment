@@ -1,28 +1,43 @@
 /**
- * Next.js Security Middleware - Global security headers and protection
+ * Next.js Security & Authentication Middleware
  */
 
 import { NextRequest, NextResponse } from 'next/server';
+import { jwtVerify } from 'jose';
 
-export function middleware(request: NextRequest) {
+// Define protected routes
+const PROTECTED_ROUTES = [
+  '/dashboard',
+  '/profile',
+  '/portfolio',
+  '/admin'
+];
+
+const ADMIN_ROUTES = [
+  '/admin'
+];
+
+const PUBLIC_ROUTES = [
+  '/',
+  '/login',
+  '/register',
+  '/forgot-password',
+  '/reset-password',
+  '/verify-email'
+];
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  
   // Create response with security headers
   const response = NextResponse.next();
 
-  // Security headers
+  // Apply security headers first
   const securityHeaders = {
-    // XSS Protection
     'X-XSS-Protection': '1; mode=block',
-    
-    // Content Type Options
     'X-Content-Type-Options': 'nosniff',
-    
-    // Frame Options
     'X-Frame-Options': 'DENY',
-    
-    // Referrer Policy
     'Referrer-Policy': 'strict-origin-when-cross-origin',
-    
-    // Content Security Policy
     'Content-Security-Policy': [
       "default-src 'self'",
       "script-src 'self' 'unsafe-eval' 'unsafe-inline'",
@@ -32,13 +47,9 @@ export function middleware(request: NextRequest) {
       "connect-src 'self'",
       "frame-ancestors 'none'"
     ].join('; '),
-    
-    // Strict Transport Security (HTTPS only)
     ...(process.env.NODE_ENV === 'production' && {
       'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload'
     }),
-    
-    // Permissions Policy
     'Permissions-Policy': [
       'camera=()',
       'microphone=()',
@@ -47,19 +58,59 @@ export function middleware(request: NextRequest) {
     ].join(', ')
   };
 
-  // Apply security headers
   Object.entries(securityHeaders).forEach(([key, value]) => {
     response.headers.set(key, value);
   });
 
-  // Rate limiting for API routes
-  if (request.nextUrl.pathname.startsWith('/api/')) {
-    const ip = request.headers.get('x-forwarded-for') || 
-               request.headers.get('x-real-ip') || 
-               'unknown';
-    
-    // Basic rate limiting logic would go here
-    // In production, use Redis or similar for distributed rate limiting
+  // Skip authentication for API routes, static files, and public routes
+  if (
+    pathname.startsWith('/api/') ||
+    pathname.startsWith('/_next/') ||
+    pathname.includes('.') ||
+    PUBLIC_ROUTES.includes(pathname)
+  ) {
+    return response;
+  }
+
+  // Check if route requires authentication
+  const isProtectedRoute = PROTECTED_ROUTES.some(route => pathname.startsWith(route));
+  const isAdminRoute = ADMIN_ROUTES.some(route => pathname.startsWith(route));
+
+  if (isProtectedRoute) {
+    // Get token from cookies
+    const token = request.cookies.get('mtg-auth-token')?.value;
+
+    if (!token) {
+      // Redirect to login if no token
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
+    }
+
+    try {
+      // Verify JWT token
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret');
+      const { payload } = await jwtVerify(token, secret);
+
+      // Check admin routes
+      if (isAdminRoute && payload.role !== 'admin') {
+        const unauthorizedUrl = new URL('/dashboard', request.url);
+        return NextResponse.redirect(unauthorizedUrl);
+      }
+
+      // Add user info to request headers for API routes
+      response.headers.set('x-user-id', payload.id as string);
+      response.headers.set('x-user-role', payload.role as string);
+      response.headers.set('x-user-email', payload.email as string);
+
+    } catch (error) {
+      // Invalid token, redirect to login
+      console.log('Invalid token:', error instanceof Error ? error.message : 'Unknown error');
+      const loginUrl = new URL('/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      loginUrl.searchParams.set('error', 'session-expired');
+      return NextResponse.redirect(loginUrl);
+    }
   }
 
   return response;

@@ -109,7 +109,7 @@ export default function AdminToolsPanel({
     },
     {
       id: 'browse-data',
-      label: 'Browse MTGJSON Data',
+      label: 'Browse Card Database',
       href: '/index-mtgjson'
     }
   ];

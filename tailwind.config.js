@@ -59,8 +59,7 @@ module.exports = {
       zIndex: designTokens.zIndex,
       transitionDuration: {
         fast: '150ms',
-        normal: '250ms',
-        slow: '350ms',
+        // ...other durations
       },
     },
   },

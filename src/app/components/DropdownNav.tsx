@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Dashboard" },
-  { href: "/index-mtgjson", label: "Database" },
+  { href: "/index-mtgjson", label: "Card Browser" },
   { href: "/admin", label: "Admin Tools" },
   // Add more pages here as needed
 ];
